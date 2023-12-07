@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:34:49 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 14:48:08 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:15:43 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,20 @@ static char	*check_map(const char *map_file)
 
 	fd = open(map_file, O_RDONLY);
 	map = get_next_line(fd);
+	tmp = get_next_line(fd);
 	s_map = ft_strlen(map);
-	while (map)
+	while (tmp)
 	{
-		tmp = get_next_line(fd);
-		if (s_map != ft_strlen(tmp))
+		if (s_map != ft_strlen(tmp) && 0 <= close(fd))
 			return (free(map), free(tmp), NULL);
 		map = ft_freejoin(map, tmp);
+		tmp = get_next_line(fd);
 	}
 	close(fd);
 	return (map);
 }
 
+// check .ber
 char	**check_maps(size_t ac, const char **av)
 {
 	size_t	i;
@@ -46,7 +48,8 @@ char	**check_maps(size_t ac, const char **av)
 	{
 		maps[i] = check_map(av[i + 1]);
 		if (!maps[i] && !free_split(maps))
-			error(ERROR_MALLOC);
+			error(ERROR_INVALID_MAP);
+		ft_dprintf(1, "%s\n", maps[i]);
 	}
 	return (maps);
 }
