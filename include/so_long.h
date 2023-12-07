@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 12:33:23 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:48:57 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,13 @@
 
 # include "libft.h"
 # include "mlx.h"
+
+# define ERROR_NBR_ARG "To start the game, please provide a valid map."
+# define ERROR_INVALID_MAP "Map invalid, please try again with another one."
+# define ERROR_MALLOC "Malloc error detected!"
+
+void	error(char *s);
+void	end_game(int status, char **maps);
+char	**check_maps(size_t ac, const char **av);
 
 #endif

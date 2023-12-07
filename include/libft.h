@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:19:46 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/06 12:45:46 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:50:49 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdarg.h>
+# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 200
@@ -70,6 +71,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_freejoin(char *s1, char *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 size_t	count_words(char const *s, char c);
 char	**free_split(char **split_s);
@@ -101,14 +103,8 @@ void	ft_dlstiter(t_dlist *lst, void (*f)(void *));
 t_dlist	*ft_dlstmap(t_dlist *lst, void *(*f)(void *), void (*del)(void *));
 
 char	*get_next_line(int fd);
-char	*ft_strnjoin(char *result, char *buf, size_t n);
-ssize_t	read_buffer(char *buf, int fd);
-size_t	find_new_line(char *buf, size_t *len);
-void	memmove_buffer(char *buf, size_t len);
 
 int		ft_dprintf(int fd, const char *s, ...);
-int		read_flag(const char *s, va_list *ap, int *i, int *len);
-int		convert_flag(char c, va_list *ap, int fd);
 int		count_putchar_fd(char c, int fd);
 int		count_putstr_fd(const char *s, int fd);
 int		ft_putnbr_base_fd(long n, char *base, int fd);

@@ -1,10 +1,13 @@
+# Program name
 NAME = so_long
 BONUS = so_long_bonus
 
+# Utils
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
 
+# Directories
 INCLUDE = include/
 SRC_DIR = src
 BONUS_DIR = bonus
@@ -13,13 +16,16 @@ LIB_DIR = lib
 LIBFT_DIR = $(LIB_DIR)/libft
 LIBMLX_DIR = $(LIB_DIR)/minilibx
 
+# Files
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
-SRC = $(addprefix $(SRC_DIR)/, main.c)
+SRC = $(addprefix $(SRC_DIR)/, main.c error.c check_maps.c\
+		end_game.c)
 BONUS_SRC = $(addprefix $(SRC_DIR)/$(BONUS_DIR)/, main.c)
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 BONUS_OBJ = $(addprefix $(OBJ_DIR)/, $(BONUS_SRC:.c=.o))
 
+# Rules
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
