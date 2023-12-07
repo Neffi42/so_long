@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:22:00 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 13:31:32 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:17:56 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	error(char *s)
 {
-	ft_dprintf(1, "%s\n", s);
+	ft_dprintf(1, "Error\n%s\n", s);
 	exit(-1);
 }
