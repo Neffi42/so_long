@@ -6,7 +6,16 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:30:55 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 11:33:14 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:34:32 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "so_long.h"
+
+int	main(int ac, char **av)
+{
+	if (ac != 2)
+		return (0);
+	ft_dprintf(1, "%s\n", av[1]);
+	return (0);
+}
