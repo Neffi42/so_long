@@ -6,14 +6,17 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:22:00 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 16:17:56 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:55:15 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error(char *s)
+int	error(char *message, const char *file)
 {
-	ft_dprintf(1, "Error\n%s\n", s);
-	exit(-1);
+	if (file)
+		ft_dprintf(1, "Error\n%s %s\n", file, message);
+	else
+		ft_dprintf(1, "Error\n%s\n", message);
+	return (-1);
 }

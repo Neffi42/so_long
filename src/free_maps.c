@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_game.c                                         :+:      :+:    :+:   */
+/*   free_maps.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 14:04:49 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/08 11:27:11 by abasdere         ###   ########.fr       */
+/*   Created: 2023/12/08 11:21:25 by abasdere          #+#    #+#             */
+/*   Updated: 2023/12/08 12:36:54 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	end_game(int status, t_map *maps)
+void	free_maps(t_map *maps)
 {
-	free_maps(maps);
-	exit(status);
+	size_t	i;
+
+	i = -1;
+	while (maps[++i])
+	{
+		free(maps[i].coins);
+		free_split(maps[i].map);
+	}
+	free(maps);
 }

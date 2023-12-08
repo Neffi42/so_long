@@ -20,7 +20,7 @@ LIBMLX_DIR = $(LIB_DIR)/minilibx
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
 SRC = $(addprefix $(SRC_DIR)/, main.c error.c check_maps.c\
-		end_game.c)
+		end_game.c free_maps.c init_pos.c init_map.c)
 BONUS_SRC = $(addprefix $(SRC_DIR)/$(BONUS_DIR)/, main.c)
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 BONUS_OBJ = $(addprefix $(OBJ_DIR)/, $(BONUS_SRC:.c=.o))

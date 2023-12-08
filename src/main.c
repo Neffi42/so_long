@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:30:55 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 15:00:50 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:54:59 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(int ac, const char **av)
 {
-	char	**maps;
+	t_map	*maps;
 
 	if (ac < 2)
-		error(ERROR_NBR_ARG);
+		return (error(ERROR_NBR_ARG, NULL));
 	maps = check_maps(ac, av);
 	end_game(0, maps);
 }
