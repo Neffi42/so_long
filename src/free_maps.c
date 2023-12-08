@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:21:25 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/08 12:36:54 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:44:02 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	free_maps(t_map *maps)
 	size_t	i;
 
 	i = -1;
-	while (maps[++i])
+	if (!maps)
+		return ;
+	while (maps[++i].map != NULL)
 	{
 		free(maps[i].coins);
 		free_split(maps[i].map);

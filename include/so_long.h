@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/08 12:36:42 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:47:13 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@
 # include "../lib/libft/include/libft.h"
 # include "../lib/minilibx/mlx.h"
 
-# define ERROR_NBR_ARG "To start the game, please provide a valid map"
+# define ERROR_NBR_ARG "Usage: ./so_long <map_file.ber> ..."
 # define ERROR_INVALID_MAP "is invalid, please try again with another one"
 # define ERROR_INVALID_SUFFIX "is invalid, please provide a .ber file"
-# define ERROR_INVALID_SHAPE "is invalid, the map must be a rectangle"
-# define ERROR_NBR_PLAYER "is invalid, the map must contain \
-	one starting position"
-# define ERROR_NBR_EXIT "is invalid, the map must contain one exit"
-# define ERROR_NBR_COINS "is invalid, the map must contain \
-	at least one collectible"
-# define ERROR_MALLOC "Malloc failed!"
+# define ERROR_INVALID_SHAPE "is invalid, it must be a rectangle"
+# define ERROR_NBR_PLAYER "is invalid, it must contain one starting position"
+# define ERROR_NBR_EXIT "is invalid, it must contain one exit"
+# define ERROR_NBR_COINS "is invalid, it must contain at least one collectible"
+# define ERROR_INVALID_WALLS " is invalid, it must be surrounded by walls"
+# define ERROR_MALLOC "Malloc failed"
 
 typedef struct s_pos
 {
@@ -37,9 +36,9 @@ typedef struct s_map
 {
 	size_t	nbr_coins;
 	t_pos	*coins;
-	int		nbr_exit;
+	size_t	nbr_exit;
 	t_pos	exit;
-	int		nbr_player;
+	size_t	nbr_player;
 	t_pos	player;
 	size_t	height;
 	size_t	width;
@@ -55,6 +54,7 @@ int		error(char *message, const char *file);
 void	end_game(int status, t_map *maps);
 void	free_maps(t_map *maps);
 t_map	*check_maps(size_t ac, const char **av);
+void	check_map(t_map *maps, size_t i, const char *map_file);
 void	init_pos(t_pos *pos, float x, float y);
 void	init_map(t_map *map);
 
