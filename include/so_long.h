@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/08 17:51:28 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:55:52 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@
 
 # define ERROR_NBR_ARG "Usage: ./so_long <map_file.ber> ..."
 # define ERROR_INVALID_MAP "is invalid, please try again with another one"
-# define ERROR_INVALID_SUFFIX "is invalid, please provide a .ber file"
+# define ERROR_INVALID_SUFFIX "is invalid, please provide a <map_file.ber>"
 # define ERROR_INVALID_SHAPE "is invalid, it must be a rectangle"
 # define ERROR_NBR_PLAYER "is invalid, it must contain one starting position"
 # define ERROR_NBR_EXIT "is invalid, it must contain one exit"
 # define ERROR_NBR_COINS "is invalid, it must contain at least one collectible"
 # define ERROR_INVALID_WALLS " is invalid, it must be surrounded by walls"
+# define ERROR_INVALID_PATH " is invalid, there is no valid path in the map"
 # define ERROR_MALLOC "Malloc failed"
 
 typedef struct s_pos

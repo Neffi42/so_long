@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/08 18:08:23 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:55:31 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,9 @@ void	check_map(t_map *maps, size_t i, const char *map_file)
 		end_game(error(ERROR_MALLOC, map_file), maps);
 	if (!check_walls(maps[i]))
 		end_game(error(ERROR_INVALID_WALLS, map_file), maps);
-	// flood map to check for valid path
 	maps[i].coins = ft_calloc(maps[i].nbr_coins, sizeof(t_pos));
 	if (!(maps[i]).coins)
 		end_game(error(ERROR_MALLOC, map_file), maps);
 	if (!flood_map(maps + i))
-		end_game(error(ERROR_MALLOC, map_file), maps);
+		end_game(error(ERROR_INVALID_PATH, map_file), maps);
 }
