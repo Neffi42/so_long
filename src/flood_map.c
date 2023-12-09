@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:44:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/09 09:44:35 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/09 09:52:24 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ static void	parse_map(t_map *map, t_fmap *fmap, float x, float y)
 		|| map->map[(int)y][(int)x] == '1')
 		return ;
 	else if (map->map[(int)y][(int)x] == 'P')
-		fmap->nbr_player++;
+		(fmap->nbr_player)++;
 	else if (map->map[(int)y][(int)x] == 'E')
-		fmap->nbr_exit++;
+		(fmap->nbr_exit)++;
 	else if (map->map[(int)y][(int)x] == 'C')
-		fmap->nbr_coins++;
+		(fmap->nbr_coins)++;
 	last_x = fmap->last.x;
 	last_y = fmap->last.y;
 	if (y > 0 && y - 1 != last_y && init_pos(&(fmap->last), x, y))
@@ -56,6 +56,8 @@ int	flood_map(t_map *map)
 	while (map->map[++i])
 		ft_dprintf(1, "%s\n", map->map[i]);
 	parse_map(map, &fmap, -1, -1);
+	printf("%ld %ld %ld %ld %ld %ld\n", fmap.nbr_coins, map->nbr_coins, fmap.nbr_exit, \
+		map->nbr_exit, fmap.nbr_player, map->nbr_player);
 	if (fmap.nbr_coins != map->nbr_coins || fmap.nbr_exit != map->nbr_exit \
 		|| fmap.nbr_player != map->nbr_player)
 		return (0);
