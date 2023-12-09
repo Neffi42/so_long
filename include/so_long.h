@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/09 08:26:49 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/09 09:31:17 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_fmap{
 	size_t	nbr_coins;
 	size_t	nbr_exit;
 	size_t	nbr_player;
+	t_pos	last;
 }	t_fmap;
 
 int		error(char *message, const char *file);
@@ -60,7 +61,7 @@ void	free_maps(t_map *maps);
 t_map	*check_maps(size_t ac, const char **av);
 void	check_map(t_map *maps, size_t i, const char *map_file);
 int		flood_map(t_map *map);
-t_pos	init_pos(float x, float y);
+int		init_pos(t_pos *pos, float x, float y);
 void	init_map(t_map *map);
 
 #endif

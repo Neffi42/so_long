@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/09 08:29:44 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/09 09:22:32 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	find_element(t_map *map, char *line, char el)
 
 	i = ft_strchr(line, el);
 	if (i && el == 'P' && ++(map->nbr_player))
-		map->player = init_pos(i - line, map->height - 1);
+		init_pos(&(map->player), i - line, map->height - 1);
 	else if (i && el == 'E' && ++(map->nbr_exit))
-		map->exit = init_pos(i - line, map->height - 1);
+		init_pos(&(map->exit), i - line, map->height - 1);
 	else if (i && el == 'C')
 		++(map->nbr_coins);
 }
