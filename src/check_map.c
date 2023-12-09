@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/08 20:55:31 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/09 08:29:44 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	find_element(t_map *map, char *line, char el)
 
 	i = ft_strchr(line, el);
 	if (i && el == 'P' && ++(map->nbr_player))
-		init_pos(&(map->player), i - line, map->height - 1);
+		map->player = init_pos(i - line, map->height - 1);
 	else if (i && el == 'E' && ++(map->nbr_exit))
-		init_pos(&(map->player), i - line, map->height - 1);
+		map->exit = init_pos(i - line, map->height - 1);
 	else if (i && el == 'C')
 		++(map->nbr_coins);
 }
@@ -44,7 +44,6 @@ static t_map	parse_map(int fd)
 
 	init_map(&map);
 	line1 = get_next_line(fd);
-	//check fd
 	find_element(&map, line1, 'P');
 	find_element(&map, line1, 'E');
 	find_element(&map, line1, 'C');
@@ -54,7 +53,7 @@ static t_map	parse_map(int fd)
 	{
 		map.height++;
 		if (map.width != ft_strlen(line2) - 1)
-			break ;
+			return (free(line1), free(line2), map);
 		find_element(&map, line2, 'P');
 		find_element(&map, line2, 'E');
 		find_element(&map, line2, 'C');
@@ -63,7 +62,7 @@ static t_map	parse_map(int fd)
 	}
 	if (!line2 && ++(map.is_rectangle))
 		map.map = ft_split(line1, '\n');
-	return (free(line1), free(line2), (void)close(fd), map);
+	return (free(line1), free(line2), map);
 }
 
 static int	check_walls(t_map map)
@@ -89,9 +88,13 @@ static int	check_walls(t_map map)
 
 void	check_map(t_map *maps, size_t i, const char *map_file)
 {
-	if (!check_suffix(map_file))
+	int	fd;
+
+	fd = open(map_file, O_RDONLY);
+	if (fd < 0 || !check_suffix(map_file))
 		end_game(error(ERROR_INVALID_SUFFIX, map_file), maps);
-	maps[i] = parse_map(open(map_file, O_RDONLY));
+	maps[i] = parse_map(fd);
+	close(fd);
 	if (!(maps[i].is_rectangle))
 		end_game(error(ERROR_INVALID_SHAPE, map_file), maps);
 	if (!(maps[i].nbr_player) || (maps[i].nbr_player) > 1)
@@ -107,6 +110,6 @@ void	check_map(t_map *maps, size_t i, const char *map_file)
 	maps[i].coins = ft_calloc(maps[i].nbr_coins, sizeof(t_pos));
 	if (!(maps[i]).coins)
 		end_game(error(ERROR_MALLOC, map_file), maps);
-	if (!flood_map(maps + i))
+	if (!flood_map(&(maps[i])))
 		end_game(error(ERROR_INVALID_PATH, map_file), maps);
 }
