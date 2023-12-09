@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/09 18:47:14 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:04:52 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_fmap{
 	size_t	nbr_coins;
 	size_t	nbr_exit;
 	size_t	nbr_player;
-	t_pos	last;
 	char	**map;
 }	t_fmap;
 
