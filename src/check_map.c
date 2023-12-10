@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/09 09:22:32 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/10 15:12:14 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,17 @@ static int	check_suffix(const char *map_file)
 
 static void	find_element(t_map *map, char *line, char el)
 {
-	char	*i;
+	size_t	i;
 
-	i = ft_strchr(line, el);
-	if (i && el == 'P' && ++(map->nbr_player))
-		init_pos(&(map->player), i - line, map->height - 1);
-	else if (i && el == 'E' && ++(map->nbr_exit))
-		init_pos(&(map->exit), i - line, map->height - 1);
+	i = ft_count_char(line, el);
+	if (i && el == 'P' && \
+		init_pos(&(map->player), ft_strchr(line, el) - line, map->height - 1))
+		map->nbr_player += i;
+	else if (i && el == 'E' && \
+		init_pos(&(map->exit), ft_strchr(line, el) - line, map->height - 1))
+		map->nbr_exit += i;
 	else if (i && el == 'C')
-		++(map->nbr_coins);
+		map->nbr_coins += i;
 }
 
 static t_map	parse_map(int fd)
