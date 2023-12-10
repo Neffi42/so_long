@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/09 19:04:52 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:33:47 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../lib/libft/include/libft.h"
 # include "../lib/minilibx/mlx.h"
-#include <stdio.h>
 
 # define ERROR_NBR_ARG "Usage: ./so_long <map_file.ber> ..."
 # define ERROR_INVALID_MAP "is invalid, please try again with another one"
@@ -55,13 +54,29 @@ typedef struct s_fmap{
 	char	**map;
 }	t_fmap;
 
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+}	t_mlx;
+
 int		error(char *message, const char *file);
-void	end_game(int status, t_map *maps);
+void	end_game(int status, t_map *maps, t_mlx *mlx);
 void	free_maps(t_map *maps);
 t_map	*check_maps(size_t ac, const char **av);
 void	check_map(t_map *maps, size_t i, const char *map_file);
 int		flood_map(t_map *map);
 int		init_pos(t_pos *pos, float x, float y);
 void	init_map(t_map *map);
+int		init_mlx(t_mlx *mlx, t_map *maps);
 
 #endif

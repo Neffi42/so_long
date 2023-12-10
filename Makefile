@@ -22,7 +22,7 @@ LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
 MLX_LIBS = -lX11 -lXext
 SRC = $(addprefix $(SRC_DIR)/, main.c error.c end_game.c \
 		free_maps.c check_maps.c check_map.c flood_map.c \
-		init_pos.c init_map.c)
+		init_pos.c init_map.c init_mlx.c)
 BONUS_SRC = $(addprefix $(SRC_DIR)/$(BONUS_DIR)/, main.c)
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 BONUS_OBJ = $(addprefix $(OBJ_DIR)/, $(BONUS_SRC:.c=.o))
@@ -72,5 +72,5 @@ bre: bclean bonus
 
 norm:
 	@norminette $(SRC_DIR) | awk '/Error/'
-
+	@norminette $(INCLUDE) | awk '/Error/'
 .PHONY = all clean fclean re norm bonus
