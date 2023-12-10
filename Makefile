@@ -19,6 +19,7 @@ LIBMLX_DIR = $(LIB_DIR)/minilibx
 # Files
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
+MLX_LIBS = -lX11 -lXext
 SRC = $(addprefix $(SRC_DIR)/, main.c error.c end_game.c \
 		free_maps.c check_maps.c check_map.c flood_map.c \
 		init_pos.c init_map.c)
@@ -31,7 +32,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
 	@echo "* Assembling $@"
-	@$(CC) $(CFLAGS) $(OBJ) -o $@ $(LIBFT) $(LIBMLX)
+	@$(CC) $(CFLAGS) $(OBJ) -o $@ $(LIBFT) $(LIBMLX) $(MLX_LIBS)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
