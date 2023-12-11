@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/10 19:27:55 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/11 12:47:15 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static t_map	parse_map(int fd)
 	char	*line2;
 
 	init_map(&map);
-	line1 = get_next_line(fd);
+	line1 = ft_get_next_line(fd);
 	find_element(&map, line1, 'P');
 	find_element(&map, line1, 'E');
 	find_element(&map, line1, 'C');
-	line2 = get_next_line(fd);
+	line2 = ft_get_next_line(fd);
 	map.width = ft_strlen(line1) - 1;
 	while (line2)
 	{
@@ -60,7 +60,7 @@ static t_map	parse_map(int fd)
 		find_element(&map, line2, 'E');
 		find_element(&map, line2, 'C');
 		line1 = ft_freejoin(line1, line2);
-		line2 = get_next_line(fd);
+		line2 = ft_get_next_line(fd);
 	}
 	if (!line2 && ++(map.is_rectangle))
 		map.map = ft_split(line1, '\n');
