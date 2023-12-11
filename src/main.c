@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:30:55 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/11 21:23:37 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/11 21:56:58 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	init_data(t_data *data)
 	data->maps = NULL;
 }
 
-int	handle_no_event(void *mlx)
+static int	handle_no_event(void *mlx)
 {
 	(void)mlx;
 	return (0);
