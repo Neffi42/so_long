@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/11 15:24:45 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/11 21:19:29 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define ERROR_INVALID_PATH "is invalid, there is no valid path in the map"
 # define ERROR_MALLOC "Malloc failed"
 
-# define WIN_WIDTH 600
-# define WIN_HEIGHT 300
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 
 typedef struct s_pos
 {
@@ -59,29 +59,32 @@ typedef struct s_fmap{
 	char	**map;
 }	t_fmap;
 
-typedef struct s_data
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}	t_data;
+}	t_img;
 
-typedef struct s_mlx
+typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
-}	t_mlx;
+	t_map	*maps;
+}	t_data;
 
 int		error(char *message, const char *file);
-void	end_game(int status, t_map *maps, t_mlx *mlx);
+void	end_game(int status, t_data *data);
 void	free_maps(t_map *maps);
-t_map	*check_maps(size_t ac, const char **av);
-void	check_map(t_map *maps, size_t i, const char *map_file);
+void	check_maps(size_t ac, const char **av, t_data *data);
+void	check_map(t_data *data, size_t i, const char *map_file);
 int		flood_map(t_map *map);
 int		init_pos(t_pos *pos, float x, float y);
 void	init_map(t_map *map);
-int		init_mlx(t_mlx *mlx);
+void	init_mlx(t_data *data);
+int		event_keypress(int keysym, t_data *data);
+int		event_destroy(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/11 12:47:15 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/11 21:11:44 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,30 +88,30 @@ static int	check_walls(t_map map)
 	return (1);
 }
 
-void	check_map(t_map *maps, size_t i, const char *map_file)
+void	check_map(t_data *data, size_t i, const char *map_file)
 {
 	int	fd;
 
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0 || !check_suffix(map_file))
-		end_game(error(ERROR_INVALID_SUFFIX, map_file), maps, NULL);
-	maps[i] = parse_map(fd);
+		end_game(error(ERROR_INVALID_SUFFIX, map_file), data);
+	data->maps[i] = parse_map(fd);
 	close(fd);
-	if (!(maps[i].is_rectangle))
-		end_game(error(ERROR_INVALID_SHAPE, map_file), maps, NULL);
-	if (!(maps[i].nbr_player) || (maps[i].nbr_player) > 1)
-		end_game(error(ERROR_NBR_PLAYER, map_file), maps, NULL);
-	if (!(maps[i].nbr_exit) || (maps[i].nbr_exit) > 1)
-		end_game(error(ERROR_NBR_EXIT, map_file), maps, NULL);
-	if (!(maps[i].nbr_coins))
-		end_game(error(ERROR_NBR_COINS, map_file), maps, NULL);
-	if (!maps[i].map)
-		end_game(error(ERROR_MALLOC, map_file), maps, NULL);
-	if (!check_walls(maps[i]))
-		end_game(error(ERROR_INVALID_WALLS, map_file), maps, NULL);
-	maps[i].coins = ft_calloc(maps[i].nbr_coins, sizeof(t_pos));
-	if (!(maps[i]).coins)
-		end_game(error(ERROR_MALLOC, map_file), maps, NULL);
-	if (!flood_map(&(maps[i])))
-		end_game(error(ERROR_INVALID_PATH, map_file), maps, NULL);
+	if (!(data->maps[i].is_rectangle))
+		end_game(error(ERROR_INVALID_SHAPE, map_file), data);
+	if (!(data->maps[i].nbr_player) || (data->maps[i].nbr_player) > 1)
+		end_game(error(ERROR_NBR_PLAYER, map_file), data);
+	if (!(data->maps[i].nbr_exit) || (data->maps[i].nbr_exit) > 1)
+		end_game(error(ERROR_NBR_EXIT, map_file), data);
+	if (!(data->maps[i].nbr_coins))
+		end_game(error(ERROR_NBR_COINS, map_file), data);
+	if (!data->maps[i].map)
+		end_game(error(ERROR_MALLOC, map_file), data);
+	if (!check_walls(data->maps[i]))
+		end_game(error(ERROR_INVALID_WALLS, map_file), data);
+	data->maps[i].coins = ft_calloc(data->maps[i].nbr_coins, sizeof(t_pos));
+	if (!(data->maps[i]).coins)
+		end_game(error(ERROR_MALLOC, map_file), data);
+	if (!flood_map(&(data->maps[i])))
+		end_game(error(ERROR_INVALID_PATH, map_file), data);
 }
