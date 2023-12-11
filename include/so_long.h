@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/10 19:33:47 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:24:45 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../lib/libft/include/libft.h"
 # include "../lib/minilibx/mlx.h"
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 # define ERROR_NBR_ARG "Usage: ./so_long <map_file.ber> ..."
 # define ERROR_INVALID_MAP "is invalid, please try again with another one"
@@ -26,6 +28,9 @@
 # define ERROR_INVALID_WALLS "is invalid, it must be surrounded by walls"
 # define ERROR_INVALID_PATH "is invalid, there is no valid path in the map"
 # define ERROR_MALLOC "Malloc failed"
+
+# define WIN_WIDTH 600
+# define WIN_HEIGHT 300
 
 typedef struct s_pos
 {
@@ -77,6 +82,6 @@ void	check_map(t_map *maps, size_t i, const char *map_file);
 int		flood_map(t_map *map);
 int		init_pos(t_pos *pos, float x, float y);
 void	init_map(t_map *map);
-int		init_mlx(t_mlx *mlx, t_map *maps);
+int		init_mlx(t_mlx *mlx);
 
 #endif
