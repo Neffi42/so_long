@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:44:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/10 15:13:49 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/11 08:37:06 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int	init_flooded_map(t_fmap *fmap, t_map *map)
 	}
 	return (1);
 }
-// use flood map to fill it with 1 and stop flooding
 
 static void	parse_map(t_map *map, t_fmap *fmap, size_t x, size_t y)
 {
