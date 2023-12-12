@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/11 21:11:44 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/12 08:39:30 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ static void	find_element(t_map *map, char *line, char el)
 		map->nbr_coins += i;
 }
 
-static t_map	parse_map(int fd)
+static t_map	parse_map(int fd, t_data *data)
 {
 	t_map	map;
 	char	*line1;
 	char	*line2;
+	(void)data;
 
 	init_map(&map);
 	line1 = ft_get_next_line(fd);
@@ -95,7 +96,7 @@ void	check_map(t_data *data, size_t i, const char *map_file)
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0 || !check_suffix(map_file))
 		end_game(error(ERROR_INVALID_SUFFIX, map_file), data);
-	data->maps[i] = parse_map(fd);
+	data->maps[i] = parse_map(fd, data);
 	close(fd);
 	if (!(data->maps[i].is_rectangle))
 		end_game(error(ERROR_INVALID_SHAPE, map_file), data);
