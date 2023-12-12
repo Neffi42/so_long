@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:30:55 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/12 12:38:45 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/12 16:09:33 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	init_data(t_data *data)
 	data->win = NULL;
 	data->maps = NULL;
 	data->imgs = NULL;
+	data->i = 0;
 }
 
 static int	handle_no_event(void *mlx)
@@ -26,17 +27,33 @@ static int	handle_no_event(void *mlx)
 	return (0);
 }
 
+static int	center(int is_x)
+{
+	if (is_x)
+		return (WIN_WIDTH / 2);
+	return (WIN_HEIGHT / 2);
+}
+
 static void	fill_window(t_data *data)
 {
 	size_t	i;
+	size_t	j;
+	int		x;
+	int		y;
 
-	i = 0;
+	i = -1;
 	data->imgs[0].img = mlx_xpm_file_to_image(data->mlx, \
 	"./textures/floor.xpm", &data->imgs[0].width, &data->imgs[0].height);
-	while (i < WIN_WIDTH)
+	while (++i < data->maps[data->i].height)
 	{
-		mlx_put_image_to_window(data->mlx, data->win, data->imgs[0].img, i, 0);
-		i += 52;
+		j = -1;
+		while (++j < data->maps[data->i].width)
+		{
+			x = (center(1) - data->maps[data->i].width);
+			y = (center(0) - data->maps[data->i].height);
+			mlx_put_image_to_window(data->mlx, data->win, \
+			data->imgs[0].img, x, y);
+		}
 	}
 }
 

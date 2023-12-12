@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/12 12:30:18 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:34:27 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define NBR_IMGS 1
+# define TILE_LEN 52
 
 typedef struct s_pos
 {
@@ -80,6 +81,7 @@ typedef struct s_data
 	void	*win;
 	t_map	*maps;
 	t_img	*imgs;
+	size_t	i;
 }	t_data;
 
 int		error(char *message, const char *file);
