@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/12 09:44:07 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:30:18 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
+# define NBR_IMGS 1
 
 typedef struct s_pos
 {
@@ -54,7 +55,8 @@ typedef struct s_map
 	const char	*map_file;
 }	t_map;
 
-typedef struct s_fmap{
+typedef struct s_fmap
+{
 	size_t	nbr_coins;
 	size_t	nbr_exit;
 	size_t	nbr_player;
@@ -65,9 +67,11 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp;
+	int		line_len;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_data
@@ -75,6 +79,7 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 	t_map	*maps;
+	t_img	*imgs;
 }	t_data;
 
 int		error(char *message, const char *file);
