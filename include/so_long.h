@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/11 21:19:29 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/12 09:44:07 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <X11/X.h>
 
 # define ERROR_NBR_ARG "Usage: ./so_long <map_file.ber> ..."
+# define ERROR_WRONG_CHAR "is invalid, it contains unauthorized characters"
 # define ERROR_INVALID_MAP "is invalid, please try again with another one"
 # define ERROR_INVALID_SUFFIX "is invalid, please provide a <map_file.ber>"
 # define ERROR_INVALID_SHAPE "is invalid, it must be a rectangle"
@@ -40,16 +41,17 @@ typedef struct s_pos
 
 typedef struct s_map
 {
-	size_t	nbr_coins;
-	t_pos	*coins;
-	size_t	nbr_exit;
-	t_pos	exit;
-	size_t	nbr_player;
-	t_pos	player;
-	size_t	height;
-	size_t	width;
-	int		is_rectangle;
-	char	**map;
+	size_t		nbr_coins;
+	t_pos		*coins;
+	size_t		nbr_exit;
+	t_pos		exit;
+	size_t		nbr_player;
+	t_pos		player;
+	size_t		height;
+	size_t		width;
+	int			is_rectangle;
+	char		**map;
+	const char	*map_file;
 }	t_map;
 
 typedef struct s_fmap{
@@ -80,9 +82,10 @@ void	end_game(int status, t_data *data);
 void	free_maps(t_map *maps);
 void	check_maps(size_t ac, const char **av, t_data *data);
 void	check_map(t_data *data, size_t i, const char *map_file);
+void	find_all_chars(t_data *data, t_map *map, char *l, size_t len);
 int		flood_map(t_map *map);
 int		init_pos(t_pos *pos, float x, float y);
-void	init_map(t_map *map);
+void	init_map(t_map *map, const char *map_file);
 void	init_mlx(t_data *data);
 int		event_keypress(int keysym, t_data *data);
 int		event_destroy(t_data *data);
