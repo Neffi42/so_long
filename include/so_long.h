@@ -6,15 +6,15 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/13 10:54:11 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:24:44 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../lib/libft/include/libft.h"
-# include "../lib/minilibx/mlx.h"
+# include "libft.h"
+# include "mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
 
