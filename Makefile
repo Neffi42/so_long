@@ -134,5 +134,9 @@ bonus: fclean $(LIBFT) $(LIBMLX) $(BONUS_OBJ)
 
 .PHONY: norm
 norm:
+	@echo "$(YELLOW)$(WD) ./$(LIBFT_DIR)$(DEFAULT)"
+	@make -C $(LIBFT_DIR) norm $(LIB_FLAGS)
+	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
 	@norminette $(SRC_DIR) | awk '/Error/'
-	@norminette $(INCLUDE) | awk '/Error/'
+	@norminette include | awk '/Error/'
+
