@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:04:49 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/12 21:21:03 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/13 08:33:54 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	end_game(int status, t_data *data)
 		free_maps(data->maps);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
-	while (data->imgs && data->imgs[++i].img)
+	while (data->imgs && ++i < NBR_IMGS)
 		mlx_destroy_image(data->mlx, data->imgs[i].img);
 	if (data->imgs)
 		free(data->imgs);

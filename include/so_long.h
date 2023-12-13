@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/12 21:17:26 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/13 08:42:13 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_data
 	size_t	i;
 }	t_data;
 
-int		error(char *message, const char *file);
+int		error(int status, char *message, const char *file);
 void	end_game(int status, t_data *data);
 void	free_maps(t_map *maps);
 void	check_maps(size_t ac, const char **av, t_data *data);

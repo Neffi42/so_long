@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/12 09:46:57 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/13 08:45:21 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,23 +77,23 @@ void	check_map(t_data *data, size_t i, const char *map_file)
 
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0 || !check_suffix(map_file))
-		end_game(error(ERROR_INVALID_SUFFIX, map_file), data);
+		end_game(error(-3, ERROR_INVALID_SUFFIX, map_file), data);
 	data->maps[i] = parse_map(data, fd, map_file);
 	if (!(data->maps[i].is_rectangle))
-		end_game(error(ERROR_INVALID_SHAPE, map_file), data);
+		end_game(error(-5, ERROR_INVALID_SHAPE, map_file), data);
 	if (!(data->maps[i].nbr_player) || (data->maps[i].nbr_player) > 1)
-		end_game(error(ERROR_NBR_PLAYER, map_file), data);
+		end_game(error(-6, ERROR_NBR_PLAYER, map_file), data);
 	if (!(data->maps[i].nbr_exit) || (data->maps[i].nbr_exit) > 1)
-		end_game(error(ERROR_NBR_EXIT, map_file), data);
+		end_game(error(-7, ERROR_NBR_EXIT, map_file), data);
 	if (!(data->maps[i].nbr_coins))
-		end_game(error(ERROR_NBR_COINS, map_file), data);
+		end_game(error(-8, ERROR_NBR_COINS, map_file), data);
 	if (!data->maps[i].map)
-		end_game(error(ERROR_MALLOC, map_file), data);
+		end_game(error(-1, ERROR_MALLOC, map_file), data);
 	if (!check_walls(data->maps[i]))
-		end_game(error(ERROR_INVALID_WALLS, map_file), data);
+		end_game(error(-9, ERROR_INVALID_WALLS, map_file), data);
 	data->maps[i].coins = ft_calloc(data->maps[i].nbr_coins, sizeof(t_pos));
 	if (!(data->maps[i]).coins)
-		end_game(error(ERROR_MALLOC, map_file), data);
+		end_game(error(-1, ERROR_MALLOC, map_file), data);
 	if (!flood_map(&(data->maps[i])))
-		end_game(error(ERROR_INVALID_PATH, map_file), data);
+		end_game(error(-10, ERROR_INVALID_PATH, map_file), data);
 }
