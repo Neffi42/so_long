@@ -57,7 +57,7 @@ endef
 SRC := $(strip $(SRC))
 
 define BONUS_SRC :=
-	bonus.c
+	$(addprefix $(BONUS_DIR)/, bonus.c)
 endef
 BONUS_SRC := $(strip $(BONUS_SRC))
 
@@ -81,7 +81,7 @@ $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "$(CYAN)- Compiling$(DEFAULT) $<"
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/$(BONUS_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $< -o $@
 
 .PHONY: clean
@@ -112,6 +112,7 @@ $(LIBMLX):
 cleanlib:
 	@echo "$(YELLOW)$(WD) ./$(LIBFT_DIR)$(DEFAULT)"
 	@make clean -C $(LIBFT_DIR) $(LIB_FLAGS)
+	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
 	@echo "$(YELLOW)$(WD) ./$(LIBMLX_DIR)$(DEFAULT)"
 	@make clean -C $(LIBMLX_DIR) $(LIB_FLAGS)
 	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
@@ -120,6 +121,7 @@ cleanlib:
 fcleanlib:
 	@echo "$(YELLOW)$(WD) ./$(LIBFT_DIR)$(DEFAULT)"
 	@make fclean -C $(LIBFT_DIR) $(LIB_FLAGS)
+	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
 	@echo "$(YELLOW)$(WD) ./$(LIBMLX_DIR)$(DEFAULT)"
 	@make clean -C $(LIBMLX_DIR) $(LIB_FLAGS)
 	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
