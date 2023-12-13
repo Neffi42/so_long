@@ -139,6 +139,4 @@ norm:
 	@echo "$(YELLOW)$(WD) ./$(LIBFT_DIR)$(DEFAULT)"
 	@make -C $(LIBFT_DIR) norm $(LIB_FLAGS)
 	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
-	@norminette $(SRC_DIR) | awk '/Error/'
-	@norminette include | awk '/Error/'
-
+	@norminette $(SRC_DIR) include | awk '/'Error'/ {print; found=1} END {if (!found) print "$(PURPLE)Norm OK$(DEFAULT)"}'
