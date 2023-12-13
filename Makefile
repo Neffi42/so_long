@@ -1,33 +1,5 @@
 # Program name
 NAME = so_long
-BONUS = so_long_bonus
-
-# Utils
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
-RM = rm -rf
-LIB_FLAGS = --no-print-directory --silent
-
-# Directories
-INCLUDE = include/
-SRC_DIR = src
-BONUS_DIR = bonus
-OBJ_DIR = obj
-LIB_DIR = lib
-LIBFT_DIR = $(LIB_DIR)/libft
-LIBMLX_DIR = $(LIB_DIR)/minilibx
-
-# Files
-LIBFT = $(LIBFT_DIR)/libft.a
-LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
-MLX_LIBS = -lX11 -lXext
-SRC = $(addprefix $(SRC_DIR)/, main.c error.c end_game.c \
-		free_maps.c check_maps.c check_map.c flood_map.c \
-		find_all_chars.c init_pos.c init_map.c init_mlx.c \
-		event_keypress.c event_destroy.c)
-BONUS_SRC = $(addprefix $(SRC_DIR)/$(BONUS_DIR)/, main.c)
-OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
-BONUS_OBJ = $(addprefix $(OBJ_DIR)/, $(BONUS_SRC:.c=.o))
 
 # Colors
 DEFAULT    = \033[0m
@@ -40,51 +12,127 @@ PURPLE    = \033[0;35m
 CYAN    = \033[0;36m
 BWHITE    = \033[1;37m
 
+# Directories
+LIB_DIR = lib
+SRC_DIR = src
+BONUS_DIR = bonus
+OBJ_DIR = obj
+LIBFT_DIR = lib/libft
+LIBMLX_DIR = lib/minilibx
+
+# Files
+LIBFT = $(LIBFT_DIR)/libft.a
+LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
+
+define LIB :=
+	$(LIBFT)
+	$(LIBMLX)
+	-lX11
+	-lXext
+endef
+LIB := $(strip $(LIB))
+
+define INCLUDE :=
+	include
+	$(LIBFT_DIR)/include
+	$(LIBMLX_DIR)
+endef
+INCLUDE := $(strip $(INCLUDE))
+
+define SRC :=
+	main.c
+	error.c
+	end_game.c
+	free_maps.c
+	check_maps.c
+	check_map.c
+	flood_map.c
+	find_all_chars.c
+	init_pos.c
+	init_map.c
+	init_mlx.c
+	event_keypress.c
+	event_destroy.c
+endef
+SRC := $(strip $(SRC))
+
+define BONUS_SRC :=
+	bonus.c
+endef
+BONUS_SRC := $(strip $(BONUS_SRC))
+
+OBJ := $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC))
+BONUS_OBJ := $(patsubst %.c,$(OBJ_DIR)/%.o,$(BONUS_SRC))
+
+# Utils
+CC = clang
+CFLAGS = -Wall -Wextra -Werror -g3
+RM = rm -rf
+INCLUDE_FLAGS := $(addprefix -I , $(INCLUDE))
+LIB_FLAGS = --no-print-directory --silent
+
 # Rules
+.PHONY: all
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
 	@echo "$(GREEN)* Assembling $(BWHITE)$@$(DEFAULT)"
-	@$(CC) $(CFLAGS) $(OBJ) -o $@ $(LIBFT) $(LIBMLX) $(MLX_LIBS)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $@
 
-$(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIR)/$(SRC_DIR)
-	@mkdir -p $(OBJ_DIR)/$(SRC_DIR)/$(BONUS_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "$(CYAN)- Compiling$(DEFAULT) $<"
-	@$(CC) $(CFLAGS) -c $< -I $(INCLUDE) -o $@
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $< -o $@
 
-$(LIBFT):
-	@make -C $(LIBFT_DIR) $(LIB_FLAGS)
-
-$(LIBMLX):
-	@echo "$(GREEN)* Assembling $(BWHITE)libmlx_Linux.a$(DEFAULT)"
-	@make -C $(LIBMLX_DIR) $(LIB_FLAGS)
-
+.PHONY: clean
 clean:
-	@make clean -C $(LIBFT_DIR) $(LIB_FLAGS)
-	@make clean -C $(LIBMLX_DIR) $(LIB_FLAGS)
 	@echo "$(RED)! Removing$(DEFAULT) $(OBJ_DIR) files"
 	@$(RM) $(OBJ_DIR)
 
+.PHONY: fclean
 fclean: clean
-	@make fclean -C $(LIBFT_DIR) $(LIB_FLAGS)
 	@echo "$(RED)! Removing$(DEFAULT) $(NAME)"
 	@$(RM) $(NAME)
 
+.PHONY: re
 re: fclean all
 
-bonus: $(LIBFT) $(LIBMLX) $(BONUS_OBJ)
-	@echo "* Assembling $(BONUS)"
-	@$(CC) $(CFLAGS) $(BONUS_OBJ) -o $(BONUS) $(LIBFT) $(LIBMLX)
+$(LIBFT):
+	@echo "$(YELLOW)$(WD) ./$(LIBFT_DIR)$(DEFAULT)"
+	@make -C $(LIBFT_DIR) $(LIB_FLAGS)
+	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
 
-bclean: clean
-	@echo "$(RED)! Removing$(DEFAULT) $(BONUS)"
-	@$(RM) $(BONUS)
+$(LIBMLX):
+	@echo "$(YELLOW)$(WD) ./$(LIBMLX_DIR)$(DEFAULT)"
+	@echo "$(GREEN)* Assembling $(BWHITE)libmlx_Linux.a$(DEFAULT)"
+	@make -C $(LIBMLX_DIR) $(LIB_FLAGS)
+	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
 
-bre: bclean bonus
+.PHONY: cleanlib
+cleanlib:
+	@echo "$(YELLOW)$(WD) ./$(LIBFT_DIR)$(DEFAULT)"
+	@make clean -C $(LIBFT_DIR) $(LIB_FLAGS)
+	@echo "$(YELLOW)$(WD) ./$(LIBMLX_DIR)$(DEFAULT)"
+	@make clean -C $(LIBMLX_DIR) $(LIB_FLAGS)
+	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
 
+.PHONY: fcleanlib
+fcleanlib:
+	@echo "$(YELLOW)$(WD) ./$(LIBFT_DIR)$(DEFAULT)"
+	@make fclean -C $(LIBFT_DIR) $(LIB_FLAGS)
+	@echo "$(YELLOW)$(WD) ./$(LIBMLX_DIR)$(DEFAULT)"
+	@make clean -C $(LIBMLX_DIR) $(LIB_FLAGS)
+	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
+
+.PHONY: relib
+relib: fcleanlib $(LIBFT) $(LIBMLX)
+
+.PHONY: bonus
+bonus: fclean $(LIBFT) $(LIBMLX) $(BONUS_OBJ)
+	@echo "* Assembling $(NAME)"
+	@$(CC) $(CFLAGS) $(BONUS_OBJ) $(LIB) -o $(NAME)
+
+.PHONY: norm
 norm:
 	@norminette $(SRC_DIR) | awk '/Error/'
 	@norminette $(INCLUDE) | awk '/Error/'
-.PHONY = all clean fclean re norm bonus
