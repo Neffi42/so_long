@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/13 08:42:13 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/13 10:54:11 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,12 @@ typedef struct s_data
 	t_img	*imgs;
 	size_t	i;
 }	t_data;
+
+typedef struct s_vec
+{
+	int	x;
+	int	y;
+}	t_vec;
 
 int		error(int status, char *message, const char *file);
 void	end_game(int status, t_data *data);

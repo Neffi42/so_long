@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:30:55 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/13 08:42:57 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/13 09:57:43 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,6 @@ static int	handle_no_event(void *mlx)
 	(void)mlx;
 	return (0);
 }
-
-// static int	center(int is_x)
-// {
-// 	if (is_x)
-// 		return (WIN_WIDTH / 2);
-// 	return (WIN_HEIGHT / 2);
-// }
 
 static void	fill_window(t_data *data)
 {

@@ -6,6 +6,7 @@ BONUS = so_long_bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
+LIB_FLAGS = --no-print-directory --silent
 
 # Directories
 INCLUDE = include/
@@ -54,19 +55,20 @@ $(OBJ_DIR)/%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -I $(INCLUDE) -o $@
 
 $(LIBFT):
-	@make -C $(LIBFT_DIR) --no-print-directory
+	@make -C $(LIBFT_DIR) $(LIB_FLAGS)
 
 $(LIBMLX):
-	@make -C $(LIBMLX_DIR) --no-print-directory
+	@echo "$(GREEN)* Assembling $(BWHITE)libmlx_Linux.a$(DEFAULT)"
+	@make -C $(LIBMLX_DIR) $(LIB_FLAGS)
 
 clean:
-	@make clean -C $(LIBFT_DIR) --no-print-directory
-	@make clean -C $(LIBMLX_DIR) --no-print-directory
+	@make clean -C $(LIBFT_DIR) $(LIB_FLAGS)
+	@make clean -C $(LIBMLX_DIR) $(LIB_FLAGS)
 	@echo "$(RED)! Removing$(DEFAULT) $(OBJ_DIR) files"
 	@$(RM) $(OBJ_DIR)
 
 fclean: clean
-	@make fclean -C $(LIBFT_DIR) --no-print-directory
+	@make fclean -C $(LIBFT_DIR) $(LIB_FLAGS)
 	@echo "$(RED)! Removing$(DEFAULT) $(NAME)"
 	@$(RM) $(NAME)
 
