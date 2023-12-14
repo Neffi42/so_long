@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 16:26:23 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:07:03 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 # define MAX_WIDTH 1920
 # define MAX_HEIGHT 1080
-# define NBR_IMGS 12
+# define NBR_IMGS 16
 # define TILE_LEN 40
 
 typedef struct s_pos

@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:30:28 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 16:26:44 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:08:03 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 static void	render_floor(t_data *data)
 {
-	size_t	i;
-	size_t	j;
-	int		x;
+	size_t	y;
+	size_t	x;
+	int		r;
 
-	i = -1;
-	while (++i < data->maps[data->i].height)
+	y = -1;
+	while (++y < data->maps[data->i].height)
 	{
-		j = -1;
-		while (++j < data->maps[data->i].width)
+		x = -1;
+		while (++x < data->maps[data->i].width)
 		{
-			x = ft_rand() % 4;
-			if (x < 0)
-				x = -x;
-			put_image(data, x, j, i);
+			r = ft_rand() % 4;
+			if (r < 0)
+				r = -r;
+			put_image(data, r, x, y);
 		}
 	}
+	put_image(data, 14, data->maps[data->i].exit.x, data->maps[data->i].exit.y);
 }
 
 static void	render_corners(t_data *data)
@@ -43,25 +44,49 @@ static void	render_corners(t_data *data)
 
 static void	render_walls(t_data *data)
 {
-	size_t	i;
-	size_t	j;
+	size_t	y;
+	size_t	x;
 
-	i = -1;
-	while (++i < data->maps[data->i].height)
+	y = -1;
+	while (++y < data->maps[data->i].height)
 	{
-		j = -1;
-		if (!i)
-			while (++j < data->maps[data->i].width - 1)
-				put_image(data, 8, j, i);
-		else if (i + 1 == data->maps[data->i].height)
-			while (++j < data->maps[data->i].width - 1)
-				put_image(data, 10, j, i);
+		x = -1;
+		if (!y)
+			while (++x < data->maps[data->i].width - 1)
+				put_image(data, 8, x, y);
+		else if (y + 1 == data->maps[data->i].height)
+			while (++x < data->maps[data->i].width - 1)
+				put_image(data, 10, x, y);
 		else
 		{
-			put_image(data, 9, 0, i);
-			put_image(data, 11, data->maps[data->i].width - 1, i);
+			put_image(data, 9, 0, y);
+			put_image(data, 11, data->maps[data->i].width - 1, y);
 		}
 	}
+}
+
+static void	render_rocks(t_data *data)
+{
+	size_t	y;
+	size_t	x;
+	int		r;
+
+	y = 0;
+	while (++y < data->maps[data->i].height - 1)
+	{
+		x = 0;
+		while (++x < data->maps[data->i].width - 1)
+		{
+			if (data->maps[data->i].map[y][x] == '1')
+			{
+				r = ft_rand() % 2;
+				if (r < 0)
+					r = -r;
+				put_image(data, 12 + r, x, y);
+			}
+		}
+	}
+
 }
 
 void	render_level(t_data *data)
@@ -69,4 +94,5 @@ void	render_level(t_data *data)
 	render_floor(data);
 	render_walls(data);
 	render_corners(data);
+	render_rocks(data);
 }

@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:57:43 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 15:48:29 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:23:19 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,8 @@ void	init_imgs(t_data *data)
 	init_img(data, 9, "./textures/wall_L.xpm");
 	init_img(data, 10, "./textures/wall_D.xpm");
 	init_img(data, 11, "./textures/wall_R.xpm");
+	init_img(data, 12, "./textures/rock1.xpm");
+	init_img(data, 13, "./textures/rock2.xpm");
+	init_img(data, 14, "./textures/trapdoor_closed.xpm");
+	init_img(data, 15, "./textures/trapdoor_open.xpm");
 }
