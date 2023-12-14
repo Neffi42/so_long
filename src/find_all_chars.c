@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:39:37 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 11:22:15 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:42:01 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	find_all_chars(t_data *data, t_map *map, char *l, size_t len)
 	i += find_el(map, l, 'C');
 	i += find_el(map, l, '0');
 	i += find_el(map, l, '1');
-	if (i + 1!= len)
+	if (i != len)
 		end_game(error(-4, ERROR_WRONG_CHAR, map->map_file), data);
 }

@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 10:49:34 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:55:26 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@
 # define ERROR_NBR_COINS "is invalid, it must contain at least one collectible"
 # define ERROR_INVALID_WALLS "is invalid, it must be surrounded by walls"
 # define ERROR_INVALID_PATH "is invalid, there is no valid path in the map"
+# define ERROR_MAP_TOO_BIG "is invalid, the map is to big"
 # define ERROR_MALLOC "Malloc failed"
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
-# define NBR_IMGS 1
-# define TILE_LEN 52
+# define MAX_WIDTH 1920
+# define MAX_HEIGHT 1080
+# define NBR_IMGS 8
+# define TILE_LEN 40
 
 typedef struct s_pos
 {
@@ -100,8 +101,10 @@ int		flood_map(t_map *map);
 int		init_pos(t_pos *pos, float x, float y);
 void	init_map(t_map *map, const char *map_file);
 void	init_mlx(t_data *data);
+void	init_imgs(t_data *data);
 int		event_keypress(int keysym, t_data *data);
 int		event_destroy(t_data *data);
 t_vec	translation(int x, int y, int dest_x, int dest_y);
+void	render_level(t_data *data);
 
 #endif

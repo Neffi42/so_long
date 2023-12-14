@@ -52,9 +52,11 @@ define SRC :=
 	init_pos.c
 	init_map.c
 	init_mlx.c
+	init_imgs.c
 	event_keypress.c
 	event_destroy.c
 	translation.c
+	render_level.c
 endef
 SRC := $(strip $(SRC))
 

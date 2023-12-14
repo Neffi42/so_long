@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 11:32:49 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:41:32 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ static t_map	parse_map(t_data *data, int fd, const char *map_file)
 	init_map(&map, map_file);
 	l1 = ft_get_next_line(fd);
 	l2 = ft_get_next_line(fd);
-	map.width = ft_strlen(l1);
+	map.width = ft_strlen(l1) - 1;
 	find_all_chars(data, &map, l1, map.width);
 	while (l2)
 	{
 		map.height++;
-		len = ft_strlen(l2);
+		len = ft_strlen(l2) - 1;
 		if (map.width != len)
 			return (free(l1), free(l2), (void)close(fd), map);
 		find_all_chars(data, &map, l2, len);
@@ -61,13 +61,13 @@ static int	check_walls(t_map map)
 		j = -1;
 		if (!i || i == map.height - 1)
 		{
-			while (++j < map.width - 1)
+			while (++j < map.width)
 				if (map.map[i][j] != '1')
 					return (0);
 		}
 		else if (map.map[i][0] != '1' || map.map[i][map.width - 1] != '1')
 		{
-			ft_dprintf(1, "%c %c\n", map.map[i][0], map.map[i][map.width - 1]);
+			ft_dprintf(1, "%c %c\n", map.map[i][0], map.map[i][map.width - 2]);
 			return (0);
 		}
 	}
