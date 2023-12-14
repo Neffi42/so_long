@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:30:55 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 09:37:02 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:13:44 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ static void	fill_window(t_data *data)
 	t_vec	vec;
 
 	i = -1;
-	data->imgs[0].img = mlx_xpm_file_to_image(data->mlx, \
-	"./textures/floorx2.xpm", &data->imgs[0].width, &data->imgs[0].height);
-	if (!data->imgs[0].img)
+	data->imgs[data->i].img = mlx_xpm_file_to_image(data->mlx, \
+	"./textures/stems/floor.xpm", &data->imgs[data->i].width, &data->imgs[data->i].height);
+	if (!data->imgs[data->i].img)
 		end_game(error(-1, ERROR_MALLOC, NULL), data);
-	vec = translation(data->maps[data->i].width, \
-	data->maps[data->i].height, WIN_WIDTH, WIN_HEIGHT);
+	vec = translation((data->maps[data->i].width + 1) / 2 * TILE_LEN, \
+	(data->maps[data->i].height + 2) / 2 * TILE_LEN, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	while (++i < data->maps[data->i].height)
 	{
 		j = -1;
 		while (++j < data->maps[data->i].width)
 		{
-			mlx_put_image_to_window(data->mlx, data->win, \
-			data->imgs[0].img, (j + vec.x) * TILE_LEN, (i + vec.y) * TILE_LEN);
+				mlx_put_image_to_window(data->mlx, data->win, \
+				data->imgs[0].img, j * TILE_LEN + vec.x, i * TILE_LEN + vec.y);
 		}
 	}
 }

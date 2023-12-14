@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 09:37:05 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 10:49:34 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define NBR_IMGS 1
-# define TILE_LEN 104
+# define TILE_LEN 52
 
 typedef struct s_pos
 {

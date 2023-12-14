@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:44:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 10:44:49 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:23:55 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ static int	init_flooded_map(t_fmap *fmap, t_map *map)
 
 static void	parse_map(t_map *map, t_fmap *fmap, size_t x, size_t y)
 {
-	if (!x || x == map->width - 1 || !y || y == map->height - 1 \
-		|| fmap->map[y][x] == '1')
+	if (y == map->height - 1 || fmap->map[y][x] == '1')
 		return ;
 	else if (map->map[y][x] == 'P' && ++(fmap->nbr_player))
 		map->map[y][x] = '0';
@@ -45,11 +44,11 @@ static void	parse_map(t_map *map, t_fmap *fmap, size_t x, size_t y)
 		init_pos(&map->coins[(fmap->nbr_coins)++], x, y))
 		map->map[y][x] = '0';
 	fmap->map[y][x] = '1';
-	if (y - 1 < map->height && fmap->map[y - 1][x] != '1')
+	if (y - 1 > 0 && fmap->map[y - 1][x] != '1')
 		parse_map(map, fmap, x, y - 1);
 	if (y + 1 < map->height && fmap->map[y + 1][x] != '1')
 		parse_map(map, fmap, x, y + 1);
-	if (x - 1 < map->width && fmap->map[y][x - 1] != '1')
+	if (x - 1 > 0 && fmap->map[y][x - 1] != '1')
 		parse_map(map, fmap, x - 1, y);
 	if (x + 1 < map->width && fmap->map[y][x + 1] != '1')
 		parse_map(map, fmap, x + 1, y);
