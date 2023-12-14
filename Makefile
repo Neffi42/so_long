@@ -15,6 +15,7 @@ BWHITE    = \033[1;37m
 # Directories
 LIB_DIR = lib
 SRC_DIR = src
+INC_DIR = include
 BONUS_DIR = bonus
 OBJ_DIR = obj
 LIBFT_DIR = lib/libft
@@ -33,7 +34,7 @@ endef
 LIB := $(strip $(LIB))
 
 define INCLUDE :=
-	include
+	$(INC_DIR)
 	$(LIBFT_DIR)/include
 	$(LIBMLX_DIR)
 endef
@@ -53,6 +54,7 @@ define SRC :=
 	init_mlx.c
 	event_keypress.c
 	event_destroy.c
+	translation.c
 endef
 SRC := $(strip $(SRC))
 
@@ -104,8 +106,8 @@ $(LIBFT):
 
 $(LIBMLX):
 	@echo "$(YELLOW)$(WD) ./$(LIBMLX_DIR)$(DEFAULT)"
-	@echo "$(GREEN)* Assembling $(BWHITE)libmlx_Linux.a$(DEFAULT)"
 	@make -C $(LIBMLX_DIR) $(LIB_FLAGS)
+	@echo "$(GREEN)* Assembling $(BWHITE)libmlx_Linux.a$(DEFAULT)"
 	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
 
 .PHONY: cleanlib
@@ -139,4 +141,4 @@ norm:
 	@echo "$(YELLOW)$(WD) ./$(LIBFT_DIR)$(DEFAULT)"
 	@make -C $(LIBFT_DIR) norm $(LIB_FLAGS)
 	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
-	@norminette $(SRC_DIR) include | awk '/'Error'/ {print; found=1} END {if (!found) print "$(PURPLE)Norm OK$(DEFAULT)"}'
+	@norminette $(SRC_DIR) $(INC_DIR) | awk '/'Error'/ {print; found=1} END {if (!found) print "$(PURPLE)Norm OK$(DEFAULT)"}'

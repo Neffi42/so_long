@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/13 15:24:44 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 09:37:05 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ void	init_map(t_map *map, const char *map_file);
 void	init_mlx(t_data *data);
 int		event_keypress(int keysym, t_data *data);
 int		event_destroy(t_data *data);
+t_vec	translation(int x, int y, int dest_x, int dest_y);
 
 #endif

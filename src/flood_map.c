@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:44:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/11 21:15:59 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 10:44:49 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	init_flooded_map(t_fmap *fmap, t_map *map)
 	{
 		fmap->map[i] = ft_strdup(map->map[i]);
 		if (!(fmap->map[i]))
-			return ((void)ft_free_split(fmap->map), 0);
+			return ((void)ft_free_tab(fmap->map), 0);
 	}
 	return (1);
 }
@@ -64,6 +64,6 @@ int	flood_map(t_map *map)
 	parse_map(map, &fmap, map->player.x, map->player.y);
 	if (fmap.nbr_coins != map->nbr_coins || fmap.nbr_exit != map->nbr_exit \
 		|| fmap.nbr_player != map->nbr_player)
-		return ((void)ft_free_split(fmap.map), 0);
-	return ((void)ft_free_split(fmap.map), 1);
+		return ((void)ft_free_tab(fmap.map), 0);
+	return ((void)ft_free_tab(fmap.map), 1);
 }
