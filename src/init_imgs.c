@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:57:43 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 14:55:59 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:48:29 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	init_imgs(t_data *data)
 	init_img(data, 5, "./textures/corner_LD.xpm");
 	init_img(data, 6, "./textures/corner_RU.xpm");
 	init_img(data, 7, "./textures/corner_RD.xpm");
-	// init_img(data, 5, "./textures/wall_U.xpm");
-	// init_img(data, 6, "./textures/wall_L.xpm");
-	// init_img(data, 7, "./textures/wall_D.xpm");
-	// init_img(data, 8, "./textures/wall_R.xpm");
+	init_img(data, 8, "./textures/wall_U.xpm");
+	init_img(data, 9, "./textures/wall_L.xpm");
+	init_img(data, 10, "./textures/wall_D.xpm");
+	init_img(data, 11, "./textures/wall_R.xpm");
 }

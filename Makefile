@@ -55,6 +55,7 @@ define SRC :=
 	init_imgs.c
 	event_keypress.c
 	event_destroy.c
+	put_image.c
 	translation.c
 	render_level.c
 endef
