@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/15 09:17:49 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 10:52:12 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 # define MAX_WIDTH 1920
 # define MAX_HEIGHT 1080
-# define NBR_IMGS 22
+# define NBR_IMGS 23
 # define TILE_LEN 40
 
 typedef struct s_pos
@@ -45,7 +45,6 @@ typedef struct s_pos
 typedef struct s_map
 {
 	size_t		nbr_coins;
-	t_pos		*coins;
 	size_t		nbr_exit;
 	t_pos		exit;
 	size_t		nbr_player;

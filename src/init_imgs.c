@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:57:43 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/15 09:17:36 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 10:33:06 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	init_img(t_data *data, size_t i, char *path)
 		end_game(error(-1, ERROR_MALLOC, NULL), data);
 }
 
-static void	init_background(t_data *data)
+static void	init_level(t_data *data)
 {
 	init_img(data, 0, "./textures/floor1.xpm");
 	init_img(data, 1, "./textures/floor2.xpm");
@@ -36,10 +36,6 @@ static void	init_background(t_data *data)
 	init_img(data, 11, "./textures/wall_R.xpm");
 	init_img(data, 12, "./textures/trapdoor_closed.xpm");
 	init_img(data, 13, "./textures/trapdoor_open.xpm");
-}
-
-static void	init_rocks(t_data *data)
-{
 	init_img(data, 14, "./textures/rock1_1.xpm");
 	init_img(data, 15, "./textures/rock1_2.xpm");
 	init_img(data, 16, "./textures/rock1_3.xpm");
@@ -48,6 +44,7 @@ static void	init_rocks(t_data *data)
 	init_img(data, 19, "./textures/rock2_2.xpm");
 	init_img(data, 20, "./textures/rock2_3.xpm");
 	init_img(data, 21, "./textures/rock2_4.xpm");
+	init_img(data, 22, "./textures/penny.xpm");
 }
 
 void	init_imgs(t_data *data)
@@ -55,6 +52,5 @@ void	init_imgs(t_data *data)
 	data->imgs = ft_calloc(NBR_IMGS, sizeof(t_img));
 	if (!data->imgs)
 		end_game(error(-1, ERROR_MALLOC, NULL), data);
-	init_background(data);
-	init_rocks(data);
+	init_level(data);
 }

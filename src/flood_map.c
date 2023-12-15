@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:44:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 11:23:55 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 10:51:55 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ static void	parse_map(t_map *map, t_fmap *fmap, size_t x, size_t y)
 {
 	if (y == map->height - 1 || fmap->map[y][x] == '1')
 		return ;
-	else if (map->map[y][x] == 'P' && ++(fmap->nbr_player))
-		map->map[y][x] = '0';
-	else if (map->map[y][x] == 'E' && ++(fmap->nbr_exit))
-		map->map[y][x] = '0';
-	else if (map->map[y][x] == 'C' && \
-		init_pos(&map->coins[(fmap->nbr_coins)++], x, y))
-		map->map[y][x] = '0';
+	else if (map->map[y][x] == 'P')
+		++(fmap->nbr_player);
+	else if (map->map[y][x] == 'E')
+		++(fmap->nbr_exit);
+	else if (map->map[y][x] == 'C')
+		++(fmap->nbr_coins);
 	fmap->map[y][x] = '1';
 	if (y - 1 > 0 && fmap->map[y - 1][x] != '1')
 		parse_map(map, fmap, x, y - 1);

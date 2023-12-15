@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 12:41:32 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 10:54:28 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static t_map	parse_map(t_data *data, int fd, const char *map_file)
 		l1 = ft_freejoin(l1, l2);
 		l2 = ft_get_next_line(fd);
 	}
+	if (map.width * TILE_LEN > MAX_WIDTH || map.height * TILE_LEN > MAX_HEIGHT)
+		end_game(error(-11, ERROR_MAP_TOO_BIG, map_file), data);
 	if (!l2 && ++(map.is_rectangle))
 		map.map = ft_split(l1, '\n');
 	return (free(l1), free(l2), (void)close(fd), map);
@@ -94,9 +96,6 @@ void	check_map(t_data *data, size_t i, const char *map_file)
 		end_game(error(-1, ERROR_MALLOC, map_file), data);
 	if (!check_walls(data->maps[i]))
 		end_game(error(-9, ERROR_INVALID_WALLS, map_file), data);
-	data->maps[i].coins = ft_calloc(data->maps[i].nbr_coins, sizeof(t_pos));
-	if (!(data->maps[i]).coins)
-		end_game(error(-1, ERROR_MALLOC, map_file), data);
 	if (!flood_map(&(data->maps[i])))
 		end_game(error(-10, ERROR_INVALID_PATH, map_file), data);
 }
