@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:57:43 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/15 10:33:06 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 11:25:12 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,16 @@ static void	init_level(t_data *data)
 	init_img(data, 22, "./textures/penny.xpm");
 }
 
+static void	init_character(t_data *data)
+{
+	init_img(data, 23, "./textures/TheLostTest2.xpm");
+}
+
 void	init_imgs(t_data *data)
 {
 	data->imgs = ft_calloc(NBR_IMGS, sizeof(t_img));
 	if (!data->imgs)
 		end_game(error(-1, ERROR_MALLOC, NULL), data);
 	init_level(data);
+	init_character(data);
 }

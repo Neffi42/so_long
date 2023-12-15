@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/15 10:52:12 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 11:20:54 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 # define MAX_WIDTH 1920
 # define MAX_HEIGHT 1080
-# define NBR_IMGS 23
+# define NBR_IMGS 24
 # define TILE_LEN 40
 
 typedef struct s_pos
@@ -106,5 +106,6 @@ int		event_destroy(t_data *data);
 t_vec	translation(int x, int y, int dest_x, int dest_y);
 void	put_image(t_data *data, size_t i, size_t x, size_t y);
 void	render_level(t_data *data);
+void	render_character(t_data *data);
 
 #endif

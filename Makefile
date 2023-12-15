@@ -58,6 +58,7 @@ define SRC :=
 	put_image.c
 	translation.c
 	render_level.c
+	render_character.c
 endef
 SRC := $(strip $(SRC))
 

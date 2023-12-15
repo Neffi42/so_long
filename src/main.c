@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:30:55 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 17:26:01 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 11:21:03 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int ac, const char **av)
 	init_mlx(&data);
 	init_imgs(&data);
 	render_level(&data);
+	render_character(&data);
 	mlx_loop_hook(data.mlx, &handle_no_event, &data);
 	mlx_hook(data.win, KeyPress, KeyPressMask, &event_keypress, &data);
 	mlx_hook(data.win, DestroyNotify, 0, &event_destroy, &data);
