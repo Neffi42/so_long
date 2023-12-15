@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/15 11:20:54 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:12:35 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,40 @@
 
 # define MAX_WIDTH 1920
 # define MAX_HEIGHT 1080
-# define NBR_IMGS 24
+# define NBR_IMGS 25
 # define TILE_LEN 40
+
+# define FLOOR1 0
+# define FLOOR2 1
+# define FLOOR3 2
+# define FLOOR4 3
+# define CORNER_LU 4
+# define CORNER_LD 5
+# define CORNER_RU 6
+# define CORNER_RD 7
+# define WALL_U 8
+# define WALL_L 9
+# define WALL_D 10
+# define WALL_R 11
+# define TRAP_C 12
+# define TRAP_O 13
+# define ROCK1_1 14
+# define ROCK1_2 15
+# define ROCK1_3 16
+# define ROCK1_4 17
+# define ROCK2_1 18
+# define ROCK2_2 19
+# define ROCK2_3 20
+# define ROCK2_4 21
+# define PENNY 22
+# define LOST_TRAP 23
+# define LOST_D 24
+
 
 typedef struct s_pos
 {
-	float	x;
-	float	y;
+	size_t	x;
+	size_t	y;
 }	t_pos;
 
 typedef struct s_map
@@ -97,7 +124,7 @@ void	check_maps(size_t ac, const char **av, t_data *data);
 void	check_map(t_data *data, size_t i, const char *map_file);
 void	find_all_chars(t_data *data, t_map *map, char *l, size_t len);
 int		flood_map(t_map *map);
-int		init_pos(t_pos *pos, float x, float y);
+int		init_pos(t_pos *pos, size_t x, size_t y);
 void	init_map(t_map *map, const char *map_file);
 void	init_mlx(t_data *data);
 void	init_imgs(t_data *data);
@@ -106,6 +133,8 @@ int		event_destroy(t_data *data);
 t_vec	translation(int x, int y, int dest_x, int dest_y);
 void	put_image(t_data *data, size_t i, size_t x, size_t y);
 void	render_level(t_data *data);
+void	render_tile(t_data *data, size_t x, size_t y);
 void	render_character(t_data *data);
+void	move_character(t_data *data, t_pos pos, size_t x, size_t y);
 
 #endif

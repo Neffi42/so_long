@@ -6,13 +6,13 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:16:32 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/09 09:31:08 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 13:19:50 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	init_pos(t_pos *pos, float x, float y)
+int	init_pos(t_pos *pos, size_t x, size_t y)
 {
 	pos->x = x;
 	pos->y = y;
