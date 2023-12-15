@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:30:28 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 17:08:03 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 09:19:02 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	render_floor(t_data *data)
 			put_image(data, r, x, y);
 		}
 	}
-	put_image(data, 14, data->maps[data->i].exit.x, data->maps[data->i].exit.y);
+	put_image(data, 12, data->maps[data->i].exit.x, data->maps[data->i].exit.y);
 }
 
 static void	render_corners(t_data *data)
@@ -79,10 +79,10 @@ static void	render_rocks(t_data *data)
 		{
 			if (data->maps[data->i].map[y][x] == '1')
 			{
-				r = ft_rand() % 2;
+				r = ft_rand() % 8;
 				if (r < 0)
 					r = -r;
-				put_image(data, 12 + r, x, y);
+				put_image(data, 14 + r, x, y);
 			}
 		}
 	}
