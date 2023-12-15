@@ -53,6 +53,7 @@ define SRC :=
 	init_map.c
 	init_mlx.c
 	init_imgs.c
+	init_data.c
 	event_keypress.c
 	event_destroy.c
 	put_image.c
@@ -60,6 +61,7 @@ define SRC :=
 	render_level.c
 	render_tile.c
 	character.c
+	game.c
 endef
 SRC := $(strip $(SRC))
 

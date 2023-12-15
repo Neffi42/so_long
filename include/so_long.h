@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/15 15:12:35 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:46:07 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 # define MAX_WIDTH 1920
 # define MAX_HEIGHT 1080
-# define NBR_IMGS 25
+# define NBR_IMGS 29
 # define TILE_LEN 40
 
 # define FLOOR1 0
@@ -59,8 +59,12 @@
 # define ROCK2_3 20
 # define ROCK2_4 21
 # define PENNY 22
-# define LOST_TRAP 23
-# define LOST_D 24
+# define LOST_ITEM 23
+# define LOST_TRAP 24
+# define LOST_JUMP1_1 25
+# define LOST_JUMP1_2 26
+# define LOST_JUMP2_1 27
+# define LOST_D 28
 
 
 typedef struct s_pos
@@ -109,6 +113,7 @@ typedef struct s_data
 	t_map	*maps;
 	t_img	*imgs;
 	size_t	i;
+	size_t	len;
 }	t_data;
 
 typedef struct s_vec
@@ -120,6 +125,7 @@ typedef struct s_vec
 int		error(int status, char *message, const char *file);
 void	end_game(int status, t_data *data);
 void	free_maps(t_map *maps);
+void	destroy_mlx(t_data *data);
 void	check_maps(size_t ac, const char **av, t_data *data);
 void	check_map(t_data *data, size_t i, const char *map_file);
 void	find_all_chars(t_data *data, t_map *map, char *l, size_t len);
@@ -128,6 +134,7 @@ int		init_pos(t_pos *pos, size_t x, size_t y);
 void	init_map(t_map *map, const char *map_file);
 void	init_mlx(t_data *data);
 void	init_imgs(t_data *data);
+void	init_data(t_data *data, size_t len);
 int		event_keypress(int keysym, t_data *data);
 int		event_destroy(t_data *data);
 t_vec	translation(int x, int y, int dest_x, int dest_y);
@@ -136,5 +143,7 @@ void	render_level(t_data *data);
 void	render_tile(t_data *data, size_t x, size_t y);
 void	render_character(t_data *data);
 void	move_character(t_data *data, t_pos pos, size_t x, size_t y);
+void	start_game(t_data *data);
+void	next_map(t_data *data);
 
 #endif

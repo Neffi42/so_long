@@ -6,21 +6,17 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:04:49 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/14 14:48:41 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:40:53 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	end_game(int status, t_data *data)
+void	destroy_mlx(t_data *data)
 {
 	size_t	i;
 
 	i = -1;
-	if (!data)
-		exit(status);
-	if (data->maps)
-		free_maps(data->maps);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
 	while (data->imgs && ++i < NBR_IMGS)
@@ -32,5 +28,14 @@ void	end_game(int status, t_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
+}
+
+void	end_game(int status, t_data *data)
+{
+	if (!data)
+		exit(status);
+	if (data->maps)
+		free_maps(data->maps);
+	destroy_mlx(data);
 	exit(status);
 }
