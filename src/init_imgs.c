@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:57:43 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 12:08:57 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:15:43 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void	init_imgs(t_data *data)
 	if (!data->imgs)
 		end_game(error(-1, ERROR_MALLOC, NULL), data);
 	init_level(data);
+	init_counter(data);
 	init_character(data);
 }

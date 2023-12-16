@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 12:06:20 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:46:35 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,41 +36,41 @@
 # define NBR_IMGS 41
 # define TILE_LEN 40
 
-# define FLOOR1 0
-# define FLOOR2 1
-# define FLOOR3 2
-# define FLOOR4 3
-# define CORNER_LU 4
-# define CORNER_LD 5
-# define CORNER_RU 6
-# define CORNER_RD 7
-# define WALL_U 8
-# define WALL_L 9
-# define WALL_D 10
-# define WALL_R 11
-# define TRAP_C 12
-# define TRAP_O 13
-# define ROCK1_1 14
-# define ROCK1_2 15
-# define ROCK1_3 16
-# define ROCK1_4 17
-# define ROCK2_1 18
-# define ROCK2_2 19
-# define ROCK2_3 20
-# define ROCK2_4 21
-# define PENNY 22
-# define MOVE 23
-# define SEMI_COL 24
-# define DIGIT_0 25
-# define DIGIT_1 26
-# define DIGIT_2 27
-# define DIGIT_3 28
-# define DIGIT_4 29
-# define DIGIT_5 30
-# define DIGIT_6 31
-# define DIGIT_7 32
-# define DIGIT_8 33
-# define DIGIT_9 34
+# define DIGIT_0 0
+# define DIGIT_1 1
+# define DIGIT_2 2
+# define DIGIT_3 3
+# define DIGIT_4 4
+# define DIGIT_5 5
+# define DIGIT_6 6
+# define DIGIT_7 7
+# define DIGIT_8 8
+# define DIGIT_9 9
+# define FLOOR1 10
+# define FLOOR2 11
+# define FLOOR3 12
+# define FLOOR4 13
+# define CORNER_LU 14
+# define CORNER_LD 15
+# define CORNER_RU 16
+# define CORNER_RD 17
+# define WALL_U 18
+# define WALL_L 19
+# define WALL_D 20
+# define WALL_R 21
+# define TRAP_C 22
+# define TRAP_O 23
+# define ROCK1_1 24
+# define ROCK1_2 25
+# define ROCK1_3 26
+# define ROCK1_4 27
+# define ROCK2_1 28
+# define ROCK2_2 29
+# define ROCK2_3 30
+# define ROCK2_4 31
+# define PENNY 32
+# define MOVE 33
+# define SEMI_COL 34
 # define LOST_ITEM 35
 # define LOST_TRAP 36
 # define LOST_JUMP1_1 37
@@ -154,8 +154,9 @@ t_vec	translation(int x, int y, int dest_x, int dest_y);
 void	put_image(t_data *data, size_t i, size_t x, size_t y);
 void	render_level(t_data *data);
 void	render_tile(t_data *data, size_t x, size_t y);
-void	render_counter(t_data *data);
 void	render_character(t_data *data);
+void	render_counter(t_data *data);
+void	update_counter(t_data *data);
 void	move_character(t_data *data, t_pos pos, size_t x, size_t y);
 void	start_game(t_data *data);
 void	next_map(t_data *data);
