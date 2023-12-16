@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:16:32 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 10:59:40 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 17:28:24 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	init_pos(t_pos *pos, size_t x, size_t y)
 {
 	pos->x = x;
 	pos->y = y;
-	pos->face = 'D';
+	pos->dir = 0;
 	pos->moves = 0;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:57:43 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 15:15:43 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 17:33:55 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,18 @@ static void	init_counter(t_data *data)
 
 static void	init_character(t_data *data)
 {
-	init_img(data, LOST_ITEM, "./textures/TheLostItem1.xpm");
-	init_img(data, LOST_TRAP, "./textures/trapdoor_closed_Lost.xpm");
+	init_img(data, LOST_ITEM, "./textures/TheLostItem.xpm");
 	init_img(data, LOST_JUMP1_1, "./textures/TheLostJump1_1.xpm");
 	init_img(data, LOST_JUMP1_2, "./textures/TheLostJump1_2.xpm");
 	init_img(data, LOST_JUMP2_1, "./textures/TheLostJump2_1.xpm");
-	init_img(data, LOST_D, "./textures/TheLostTest2.xpm");
+	init_img(data, LOST_FD, "./textures/TheLostFloorD.xpm");
+	init_img(data, LOST_FL, "./textures/TheLostFloorL.xpm");
+	init_img(data, LOST_FU, "./textures/TheLostFloorU.xpm");
+	init_img(data, LOST_FR, "./textures/TheLostFloorR.xpm");
+	init_img(data, LOST_TD, "./textures/TheLostTrapD.xpm");
+	init_img(data, LOST_TL, "./textures/TheLostTrapL.xpm");
+	init_img(data, LOST_TU, "./textures/TheLostTrapU.xpm");
+	init_img(data, LOST_TR, "./textures/TheLostTrapR.xpm");
 }
 
 void	init_imgs(t_data *data)

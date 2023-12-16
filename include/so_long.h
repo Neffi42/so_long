@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 15:46:35 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 17:28:10 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 # define MAX_WIDTH 1920
 # define MAX_HEIGHT 1080
-# define NBR_IMGS 41
+# define NBR_IMGS 47
 # define TILE_LEN 40
 
 # define DIGIT_0 0
@@ -72,17 +72,23 @@
 # define MOVE 33
 # define SEMI_COL 34
 # define LOST_ITEM 35
-# define LOST_TRAP 36
-# define LOST_JUMP1_1 37
-# define LOST_JUMP1_2 38
-# define LOST_JUMP2_1 39
-# define LOST_D 40
+# define LOST_JUMP1_1 36
+# define LOST_JUMP1_2 37
+# define LOST_JUMP2_1 38
+# define LOST_FD 39
+# define LOST_FL 40
+# define LOST_FU 41
+# define LOST_FR 42
+# define LOST_TD 43
+# define LOST_TL 44
+# define LOST_TU 45
+# define LOST_TR 46
 
 typedef struct s_pos
 {
 	size_t	x;
 	size_t	y;
-	char	face;
+	int		dir;
 	size_t	moves;
 }	t_pos;
 
