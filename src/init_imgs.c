@@ -6,19 +6,11 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:57:43 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 17:33:55 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:04:37 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	init_img(t_data *data, size_t i, char *path)
-{
-	data->imgs[i].img = mlx_xpm_file_to_image(data->mlx, path, \
-	&data->imgs[i].width, &data->imgs[i].height);
-	if (!data->imgs[i].img)
-		end_game(error(-1, ERROR_MALLOC, NULL), data);
-}
 
 static void	init_level(t_data *data)
 {
@@ -79,12 +71,25 @@ static void	init_character(t_data *data)
 	init_img(data, LOST_TR, "./textures/TheLostTrapR.xpm");
 }
 
+static void	init_bonus(t_data *data)
+{
+	init_img(data, GOBLIN_L, "./textures/Goblin_L.xpm");
+	init_img(data, GOBLIN_R, "./textures/Goblin_R.xpm");
+	init_img(data, GOBLIN_DL, "./textures/Goblin_DL.xpm");
+	init_img(data, GOBLIN_DR, "./textures/Goblin_DR.xpm");
+}
+
 void	init_imgs(t_data *data)
 {
-	data->imgs = ft_calloc(NBR_IMGS, sizeof(t_img));
+	if (data->bonus)
+		data->imgs = ft_calloc(NBR_IMGS + BONUS_IMGS, sizeof(t_img));
+	else
+		data->imgs = ft_calloc(NBR_IMGS, sizeof(t_img));
 	if (!data->imgs)
 		end_game(error(-1, ERROR_MALLOC, NULL), data);
 	init_level(data);
 	init_counter(data);
 	init_character(data);
+	if (data->bonus)
+		init_bonus(data);
 }

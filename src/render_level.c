@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:30:28 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/15 15:09:41 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:55:31 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,7 @@ static void	render_rocks_and_coins(t_data *data, size_t x, size_t y, int coins)
 
 	r = 0;
 	if (!coins)
-	{
-		r = ft_rand() % 8;
-		if (r < 0)
-			r = -r;
-	}
+		r = ft_range_rand(8);
 	put_image(data, ROCK1_1 + coins + r, x, y);
 }
 

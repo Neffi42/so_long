@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus.c                                            :+:      :+:    :+:   */
+/*   init_img.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 16:05:35 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/13 16:05:38 by abasdere         ###   ########.fr       */
+/*   Created: 2023/12/16 18:34:03 by abasdere          #+#    #+#             */
+/*   Updated: 2023/12/16 18:34:28 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
+void	init_img(t_data *data, size_t i, char *path)
 {
-	if (ac != 2)
-		return (0);
-	ft_dprintf(1, "%s\n", av[1]);
-	return (0);
+	data->imgs[i].img = mlx_xpm_file_to_image(data->mlx, path, \
+	&data->imgs[i].width, &data->imgs[i].height);
+	if (!data->imgs[i].img)
+		end_game(error(-1, ERROR_MALLOC, NULL), data);
 }

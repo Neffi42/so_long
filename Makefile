@@ -52,6 +52,7 @@ define SRC :=
 	init_pos.c
 	init_map.c
 	init_mlx.c
+	init_img.c
 	init_imgs.c
 	init_data.c
 	event_keypress.c
@@ -67,7 +68,30 @@ endef
 SRC := $(strip $(SRC))
 
 define BONUS_SRC :=
-	$(addprefix $(BONUS_DIR)/, bonus.c)
+	error.c
+	end_game.c
+	free_maps.c
+	check_maps.c
+	check_map.c
+	flood_map.c
+	find_all_chars.c
+	init_pos.c
+	init_map.c
+	init_mlx.c
+	init_img.c
+	init_imgs.c
+	init_data.c
+	event_keypress.c
+	event_destroy.c
+	put_image.c
+	translation.c
+	render_level.c
+	render_tile.c
+	render_counter.c
+	$(addprefix $(BONUS_DIR)/, $(addsuffix _bonus.c, main \
+	render_enemies \
+	game \
+	character))
 endef
 BONUS_SRC := $(strip $(BONUS_SRC))
 

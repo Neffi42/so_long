@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 17:28:10 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:38:40 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 
 # define MAX_WIDTH 1920
 # define MAX_HEIGHT 1080
-# define NBR_IMGS 47
 # define TILE_LEN 40
 
 # define DIGIT_0 0
@@ -83,6 +82,13 @@
 # define LOST_TL 44
 # define LOST_TU 45
 # define LOST_TR 46
+# define NBR_IMGS 47
+
+# define GOBLIN_L 47
+# define GOBLIN_R 48
+# define GOBLIN_DL 49
+# define GOBLIN_DR 50
+# define BONUS_IMGS 4
 
 typedef struct s_pos
 {
@@ -133,6 +139,9 @@ typedef struct s_data
 	t_img	*imgs;
 	size_t	i;
 	size_t	len;
+	int		bonus;
+	size_t	nbr_e;
+	t_pos	*pos_e;
 }	t_data;
 
 typedef struct s_vec
@@ -152,8 +161,9 @@ int		flood_map(t_map *map);
 int		init_pos(t_pos *pos, size_t x, size_t y);
 void	init_map(t_map *map, const char *map_file);
 void	init_mlx(t_data *data);
+void	init_img(t_data *data, size_t i, char *path);
 void	init_imgs(t_data *data);
-void	init_data(t_data *data, size_t len);
+void	init_data(t_data *data, size_t len, int bonus);
 int		event_keypress(int keysym, t_data *data);
 int		event_destroy(t_data *data);
 t_vec	translation(int x, int y, int dest_x, int dest_y);
@@ -161,9 +171,10 @@ void	put_image(t_data *data, size_t i, size_t x, size_t y);
 void	render_level(t_data *data);
 void	render_tile(t_data *data, size_t x, size_t y);
 void	render_character(t_data *data);
+void	move_character(t_data *data, t_pos pos, size_t x, size_t y);
 void	render_counter(t_data *data);
 void	update_counter(t_data *data);
-void	move_character(t_data *data, t_pos pos, size_t x, size_t y);
+void	render_enemies(t_data *data);
 void	start_game(t_data *data);
 void	next_map(t_data *data);
 

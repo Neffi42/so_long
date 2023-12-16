@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 11:30:55 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 18:41:01 by abasdere         ###   ########.fr       */
+/*   Created: 2023/12/16 18:40:53 by abasdere          #+#    #+#             */
+/*   Updated: 2023/12/16 18:41:14 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, const char **av)
 
 	if (ac < 2)
 		end_game(error(-2, ERROR_NBR_ARG, NULL), NULL);
-	init_data(&data, ac - 1, 0);
+	init_data(&data, ac - 1, 1);
 	check_maps(ac, av, &data);
 	start_game(&data);
 	end_game(0, &data);
