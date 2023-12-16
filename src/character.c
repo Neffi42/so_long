@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:16:52 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 16:00:19 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:32:58 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	move_character(t_data *data, t_pos pos, size_t x, size_t y)
 	t_map	*map;
 
 	map = &(data->maps[data->i]);
-	if (map->map[y][x] == 'E')
+	if (!(map->nbr_coins) && map->map[y][x] == 'E')
 		next_map(data);
 	else if (map->map[y][x] != '1')
 	{
@@ -25,7 +25,7 @@ void	move_character(t_data *data, t_pos pos, size_t x, size_t y)
 		map->player.y = y;
 		map->player.moves++;
 		render_character(data);
-		// update_counter(data);
+		update_counter(data);
 		render_tile(data, pos.x, pos.y);
 		if (map->map[y][x] == 'C' && map->nbr_coins--)
 		{

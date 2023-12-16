@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:03:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 16:00:22 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:27:57 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	start_game(t_data *data)
 	init_mlx(data);
 	init_imgs(data);
 	render_level(data);
-	// render_counter(data);
+	render_counter(data);
 	render_character(data);
 	mlx_loop_hook(data->mlx, &handle_no_event, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, &event_keypress, data);
