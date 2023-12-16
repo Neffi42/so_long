@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 09:33:06 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 12:06:20 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 # define MAX_WIDTH 1920
 # define MAX_HEIGHT 1080
-# define NBR_IMGS 29
+# define NBR_IMGS 41
 # define TILE_LEN 40
 
 # define FLOOR1 0
@@ -59,17 +59,31 @@
 # define ROCK2_3 20
 # define ROCK2_4 21
 # define PENNY 22
-# define LOST_ITEM 23
-# define LOST_TRAP 24
-# define LOST_JUMP1_1 25
-# define LOST_JUMP1_2 26
-# define LOST_JUMP2_1 27
-# define LOST_D 28
+# define MOVE 23
+# define SEMI_COL 24
+# define DIGIT_0 25
+# define DIGIT_1 26
+# define DIGIT_2 27
+# define DIGIT_3 28
+# define DIGIT_4 29
+# define DIGIT_5 30
+# define DIGIT_6 31
+# define DIGIT_7 32
+# define DIGIT_8 33
+# define DIGIT_9 34
+# define LOST_ITEM 35
+# define LOST_TRAP 36
+# define LOST_JUMP1_1 37
+# define LOST_JUMP1_2 38
+# define LOST_JUMP2_1 39
+# define LOST_D 40
 
 typedef struct s_pos
 {
 	size_t	x;
 	size_t	y;
+	char	face;
+	size_t	moves;
 }	t_pos;
 
 typedef struct s_map
@@ -140,6 +154,7 @@ t_vec	translation(int x, int y, int dest_x, int dest_y);
 void	put_image(t_data *data, size_t i, size_t x, size_t y);
 void	render_level(t_data *data);
 void	render_tile(t_data *data, size_t x, size_t y);
+void	render_counter(t_data *data);
 void	render_character(t_data *data);
 void	move_character(t_data *data, t_pos pos, size_t x, size_t y);
 void	start_game(t_data *data);

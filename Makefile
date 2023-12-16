@@ -60,6 +60,7 @@ define SRC :=
 	translation.c
 	render_level.c
 	render_tile.c
+	render_counter.c
 	character.c
 	game.c
 endef
@@ -74,7 +75,7 @@ OBJ := $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC))
 BONUS_OBJ := $(patsubst %.c,$(OBJ_DIR)/%.o,$(BONUS_SRC))
 
 # Utils
-CC = clang
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
 INCLUDE_FLAGS := $(addprefix -I , $(INCLUDE))
