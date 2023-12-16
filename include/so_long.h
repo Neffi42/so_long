@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/15 16:46:07 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 09:33:06 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@
 # define LOST_JUMP1_2 26
 # define LOST_JUMP2_1 27
 # define LOST_D 28
-
 
 typedef struct s_pos
 {

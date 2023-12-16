@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/15 10:54:28 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/16 09:31:17 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static t_map	parse_map(t_data *data, int fd, const char *map_file)
 		l1 = ft_freejoin(l1, l2);
 		l2 = ft_get_next_line(fd);
 	}
-	if (map.width * TILE_LEN > MAX_WIDTH || map.height * TILE_LEN > MAX_HEIGHT)
-		end_game(error(-11, ERROR_MAP_TOO_BIG, map_file), data);
 	if (!l2 && ++(map.is_rectangle))
 		map.map = ft_split(l1, '\n');
 	return (free(l1), free(l2), (void)close(fd), map);
@@ -68,10 +66,7 @@ static int	check_walls(t_map map)
 					return (0);
 		}
 		else if (map.map[i][0] != '1' || map.map[i][map.width - 1] != '1')
-		{
-			ft_dprintf(1, "%c %c\n", map.map[i][0], map.map[i][map.width - 2]);
 			return (0);
-		}
 	}
 	return (1);
 }
@@ -86,6 +81,9 @@ void	check_map(t_data *data, size_t i, const char *map_file)
 	data->maps[i] = parse_map(data, fd, map_file);
 	if (!(data->maps[i].is_rectangle))
 		end_game(error(-5, ERROR_INVALID_SHAPE, map_file), data);
+	if ((data->maps[i].width + 2) * TILE_LEN > MAX_WIDTH || \
+	(data->maps[i].height + 2) * TILE_LEN >= MAX_HEIGHT)
+		end_game(error(-11, ERROR_MAP_TOO_BIG, map_file), data);
 	if (!(data->maps[i].nbr_player) || (data->maps[i].nbr_player) > 1)
 		end_game(error(-6, ERROR_NBR_PLAYER, map_file), data);
 	if (!(data->maps[i].nbr_exit) || (data->maps[i].nbr_exit) > 1)
