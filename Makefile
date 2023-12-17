@@ -165,7 +165,7 @@ relib: fcleanlib $(LIBFT) $(LIBMLX)
 
 .PHONY: bonus
 bonus: fclean $(LIBFT) $(LIBMLX) $(BONUS_OBJ)
-	@echo "* Assembling $(NAME)"
+	@echo "$(GREEN)* Assembling $(BWHITE)$@$(DEFAULT)"
 	@$(CC) $(CFLAGS) $(BONUS_OBJ) $(LIB) -o $(NAME)
 
 .PHONY: norm

@@ -6,15 +6,27 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:44:05 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 19:58:30 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/17 12:30:51 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// check position with exit and player and other ennemies
+static int	is_pos_free(t_pos *pos_e, t_map	*map, t_pos pos, size_t i)
+{
+	size_t	j;
 
-static t_pos	rand_pos_enemy(t_data *data)
+	j = -1;
+	if (map->map[pos.y][pos.x] == '1' || map->map[pos.y][pos.x] == 'E' || \
+		map->map[pos.y][pos.x] == 'P')
+		return (0);
+	while (++j < i)
+		if (pos_e[j].x == pos.x && pos_e[j].y == pos.y)
+			return (0);
+	return (1);
+}
+
+static t_pos	rand_pos_enemy(t_data *data, size_t i)
 {
 	t_map	*map;
 	t_pos	pos;
@@ -22,13 +34,11 @@ static t_pos	rand_pos_enemy(t_data *data)
 	map = &(data->maps[data->i]);
 	pos.x = ft_range_rand(map->width);
 	pos.y = ft_range_rand(map->height);
-	while ((pos.x == map->player.x && pos.y == map->player.y) || \
-		(pos.x == map->exit.x && pos.y == map->exit.y))
+	while (!is_pos_free(data->pos_e, map, pos, i))
 	{
 		pos.x = ft_range_rand(map->width);
 		pos.y = ft_range_rand(map->height);
 	}
-
 	return (pos);
 }
 
@@ -42,5 +52,8 @@ void	render_enemies(t_data *data)
 	if (data->pos_e)
 		end_game(error(-1, ERROR_MALLOC, NULL), data);
 	while (++i < data->nbr_e)
-		data->pos_e[i] = rand_pos_enemy(data);
+		data->pos_e[i] = rand_pos_enemy(data, i);
+	i = -1;
+	while (++i < data->nbr_e)
+		put_image(data, GOBLIN_R, data->pos_e[i].x, data->pos_e[i].y);
 }
