@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:57:43 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 19:04:37 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/17 15:11:45 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,17 @@ static void	init_character(t_data *data)
 
 static void	init_bonus(t_data *data)
 {
-	init_img(data, GOBLIN_L, "./textures/Goblin_L.xpm");
-	init_img(data, GOBLIN_R, "./textures/Goblin_R.xpm");
-	init_img(data, GOBLIN_DL, "./textures/Goblin_DL.xpm");
-	init_img(data, GOBLIN_DR, "./textures/Goblin_DR.xpm");
+	init_img(data, GOBLIN_L, "./textures/GoblinL.xpm");
+	init_img(data, GOBLIN_R, "./textures/GoblinR.xpm");
+	init_img(data, GOBLIN_DL, "./textures/GoblinDL.xpm");
+	init_img(data, GOBLIN_DR, "./textures/GoblinDR.xpm");
+	init_img(data, GOBLIN_B1, "./textures/GoblinB1.xpm");
+	init_img(data, GOBLIN_B2, "./textures/GoblinB2.xpm");
+	init_img(data, GOBLIN_B3, "./textures/GoblinB3.xpm");
+	init_img(data, GOBLIN_B4, "./textures/GoblinB4.xpm");
+	init_img(data, GOBLIN_B5, "./textures/GoblinB5.xpm");
+	init_img(data, GOBLIN_B6, "./textures/GoblinB6.xpm");
+	init_img(data, GOBLIN_B7, "./textures/GoblinB7.xpm");
 }
 
 void	init_imgs(t_data *data)

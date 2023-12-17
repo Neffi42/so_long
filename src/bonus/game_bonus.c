@@ -6,15 +6,15 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:03:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/17 12:33:20 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/17 14:56:21 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	handle_no_event(void *mlx)
+static int	handle_no_event(t_data *data)
 {
-	(void)mlx;
+	(void)data;
 	return (0);
 }
 

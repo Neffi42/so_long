@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:44:05 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/17 12:30:51 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/17 15:35:18 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,26 @@ static t_pos	rand_pos_enemy(t_data *data, size_t i)
 
 void	render_enemies(t_data *data)
 {
-	size_t	i;
+	size_t		i;
+	int			x;
+	t_timespec	s;
 
 	i = -1;
+	x = -1;
+	s.tv_sec = 0;
+	s.tv_nsec = 175000000;
 	data->nbr_e = ft_range_rand(data->maps[data->i].nbr_coins) / 2;
 	data->pos_e = ft_calloc(++(data->nbr_e), sizeof(t_pos));
-	if (data->pos_e)
+	if (!data->pos_e)
 		end_game(error(-1, ERROR_MALLOC, NULL), data);
 	while (++i < data->nbr_e)
 		data->pos_e[i] = rand_pos_enemy(data, i);
-	i = -1;
-	while (++i < data->nbr_e)
-		put_image(data, GOBLIN_R, data->pos_e[i].x, data->pos_e[i].y);
+	while (++x + GOBLIN_B1 <= GOBLIN_R)
+	{
+		i = -1;
+		while (++i < data->nbr_e)
+			put_image(data, GOBLIN_B1 + x, data->pos_e[i].x, \
+			data->pos_e[i].y);
+		nanosleep(&s, NULL);
+	}
 }

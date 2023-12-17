@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 19:38:40 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/17 15:30:21 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <time.h>
 
 # define ERROR_NBR_ARG "Usage: ./so_long <map_file.ber> ..."
 # define ERROR_WRONG_CHAR "is invalid, it contains unauthorized characters"
@@ -30,6 +31,7 @@
 # define ERROR_INVALID_PATH "is invalid, there is no valid path in the map"
 # define ERROR_MAP_TOO_BIG "is invalid, the map is to big"
 # define ERROR_MALLOC "Malloc failed"
+# define ERROR_IMG "is invalvid, please check the asset"
 
 # define MAX_WIDTH 1920
 # define MAX_HEIGHT 1080
@@ -84,11 +86,18 @@
 # define LOST_TR 46
 # define NBR_IMGS 47
 
-# define GOBLIN_L 47
-# define GOBLIN_R 48
-# define GOBLIN_DL 49
-# define GOBLIN_DR 50
-# define BONUS_IMGS 4
+# define GOBLIN_B1 47
+# define GOBLIN_B2 48
+# define GOBLIN_B3 49
+# define GOBLIN_B4 50
+# define GOBLIN_B5 51
+# define GOBLIN_B6 52
+# define GOBLIN_B7 53
+# define GOBLIN_R 54
+# define GOBLIN_L 55
+# define GOBLIN_DR 56
+# define GOBLIN_DL 57
+# define BONUS_IMGS 11
 
 typedef struct s_pos
 {
@@ -149,6 +158,8 @@ typedef struct s_vec
 	int	x;
 	int	y;
 }	t_vec;
+
+typedef struct timespec	t_timespec;
 
 int		error(int status, char *message, const char *file);
 void	end_game(int status, t_data *data);
