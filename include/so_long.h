@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/18 13:11:32 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:47:17 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,12 @@
 # define GOBLIN_DL 57
 # define BONUS_IMGS 11
 
+typedef struct s_vec
+{
+	int	x;
+	int	y;
+}	t_vec;
+
 typedef struct s_pos
 {
 	size_t	x;
@@ -109,22 +115,6 @@ typedef struct s_pos
 	size_t	moves;
 }	t_pos;
 
-typedef struct s_map
-{
-	size_t		nbr_coins;
-	size_t		nbr_exit;
-	t_pos		exit;
-	size_t		nbr_player;
-	t_pos		player;
-	size_t		nbr_foes;
-	t_pos		*pos_foes;
-	size_t		height;
-	size_t		width;
-	int			is_rectangle;
-	char		**map;
-	const char	*map_file;
-}	t_map;
-
 typedef struct s_fmap
 {
 	size_t	nbr_coins;
@@ -132,6 +122,12 @@ typedef struct s_fmap
 	size_t	nbr_player;
 	char	**map;
 }	t_fmap;
+
+typedef struct s_dmap
+{
+	char	c;
+	int		cost;
+}	t_dmap;
 
 typedef struct s_img
 {
@@ -144,6 +140,22 @@ typedef struct s_img
 	int		height;
 }	t_img;
 
+typedef struct s_map
+{
+	size_t		nbr_coins;
+	size_t		nbr_exit;
+	t_pos		exit;
+	size_t		nbr_player;
+	t_pos		player;
+	size_t		nbr_foes;
+	t_pos		*foes;
+	size_t		height;
+	size_t		width;
+	int			is_rectangle;
+	char		**map;
+	const char	*map_file;
+}	t_map;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -154,12 +166,6 @@ typedef struct s_data
 	size_t	len;
 	int		bonus;
 }	t_data;
-
-typedef struct s_vec
-{
-	int	x;
-	int	y;
-}	t_vec;
 
 typedef struct timespec	t_timespec;
 
@@ -188,7 +194,11 @@ void	render_character(t_data *data);
 void	move_character(t_data *data, t_pos pos, size_t x, size_t y);
 void	render_counter(t_data *data);
 void	update_counter(t_data *data);
-void	render_enemies(t_data *data);
+void	render_foes(t_data *data);
+t_dmap	**init_dmap(t_data *data, t_pos src, t_pos dest);
+void	*free_dmap(t_dmap **dmap);
+t_pos	pathfinder(t_data *data, t_pos src, t_pos dest);
+void	move_foes(t_data *data);
 void	start_game(t_data *data);
 void	next_map(t_data *data);
 

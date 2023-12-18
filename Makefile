@@ -89,7 +89,10 @@ define BONUS_SRC :=
 	render_tile.c
 	render_counter.c
 	$(addprefix $(BONUS_DIR)/, $(addsuffix _bonus.c, main \
-	render_enemies \
+	foes \
+	init_dmap \
+	free_dmap \
+	pathfinder \
 	game \
 	character))
 endef

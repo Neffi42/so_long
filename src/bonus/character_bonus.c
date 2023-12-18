@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:16:52 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/18 11:35:43 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:04:17 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	check_for_enemies(t_data *data)
 	i = -1;
 	pos = &(data->maps[data->i].player);
 	while (++i < data->maps[data->i].nbr_foes)
-		if (pos->x == data->maps[data->i].pos_foes[i].x && \
-		pos->y == data->maps[data->i].pos_foes[i].y)
+		if (pos->x == data->maps[data->i].foes[i].x && \
+		pos->y == data->maps[data->i].foes[i].y)
 			end_game(message(GAME_OVER), data);
 }
 
@@ -49,6 +49,8 @@ void	move_character(t_data *data, t_pos pos, size_t x, size_t y)
 			if (!(map->nbr_coins))
 				put_image(data, TRAP_O, map->exit.x, map->exit.y);
 		}
+		check_for_enemies(data);
+		move_foes(data);
 		check_for_enemies(data);
 	}
 }

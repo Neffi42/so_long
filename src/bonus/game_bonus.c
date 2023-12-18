@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:03:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/18 11:20:10 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:21:13 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	start_game(t_data *data)
 	render_counter(data);
 	render_character(data);
 	if (data->maps[data->i].nbr_foes)
-		render_enemies(data);
+		render_foes(data);
 	mlx_loop_hook(data->mlx, &handle_no_event, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, &event_keypress, data);
 	mlx_hook(data->win, DestroyNotify, 0, &event_destroy, data);

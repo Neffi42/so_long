@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:21:25 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/18 12:23:47 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:56:24 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_maps(t_data *data)
 	while (data->maps && data->maps[++i].map)
 	{
 		if (data->bonus)
-			free(data->maps[i].pos_foes);
+			free(data->maps[i].foes);
 		ft_free_tab(data->maps[i].map);
 	}
 	free(data->maps);
