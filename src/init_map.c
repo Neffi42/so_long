@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 12:01:44 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/15 10:52:21 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:20:25 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,6 @@ void	init_map(t_map *map, const char *map_file)
 	map->is_rectangle = 0;
 	map->map = NULL;
 	map->map_file = map_file;
+	map->nbr_foes = 0;
+	map->pos_foes = NULL;
 }

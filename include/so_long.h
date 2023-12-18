@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/17 15:30:21 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:20:20 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define ERROR_MAP_TOO_BIG "is invalid, the map is to big"
 # define ERROR_MALLOC "Malloc failed"
 # define ERROR_IMG "is invalvid, please check the asset"
+# define WIN "▬▬▬ YOU WIN ! ▬▬▬"
+# define GAME_OVER "▬▬▬ GAME OVER ! ▬▬▬"
 
 # define MAX_WIDTH 1920
 # define MAX_HEIGHT 1080
@@ -114,6 +116,8 @@ typedef struct s_map
 	t_pos		exit;
 	size_t		nbr_player;
 	t_pos		player;
+	size_t		nbr_foes;
+	t_pos		*pos_foes;
 	size_t		height;
 	size_t		width;
 	int			is_rectangle;
@@ -149,8 +153,6 @@ typedef struct s_data
 	size_t	i;
 	size_t	len;
 	int		bonus;
-	size_t	nbr_e;
-	t_pos	*pos_e;
 }	t_data;
 
 typedef struct s_vec
@@ -161,13 +163,14 @@ typedef struct s_vec
 
 typedef struct timespec	t_timespec;
 
+int		message(char *message);
 int		error(int status, char *message, const char *file);
 void	end_game(int status, t_data *data);
-void	free_maps(t_map *maps);
+void	free_maps(t_data *data);
 void	destroy_mlx(t_data *data);
 void	check_maps(size_t ac, const char **av, t_data *data);
 void	check_map(t_data *data, size_t i, const char *map_file);
-void	find_all_chars(t_data *data, t_map *map, char *l, size_t len);
+void	find_all_chars(t_data *data, t_map *map, size_t height, size_t len);
 int		flood_map(t_map *map);
 int		init_pos(t_pos *pos, size_t x, size_t y);
 void	init_map(t_map *map, const char *map_file);

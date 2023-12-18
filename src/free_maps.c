@@ -6,20 +6,22 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:21:25 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/15 10:52:54 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:37:28 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_maps(t_map *maps)
+void	free_maps(t_data *data)
 {
 	size_t	i;
 
 	i = -1;
-	if (!maps)
-		return ;
-	while (maps[++i].map != NULL)
-		ft_free_tab(maps[i].map);
-	free(maps);
+	while (data->maps && data->maps[++i].map != NULL)
+	{
+		if (data->bonus)
+			free(data->maps[i].pos_foes);
+		ft_free_tab(data->maps[i].map);
+	}
+	free(data->maps);
 }

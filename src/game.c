@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:03:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 18:53:20 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/18 10:25:20 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ void	next_map(t_data *data)
 		destroy_mlx(data);
 		start_game(data);
 	}
-	end_game(0, data);
+	end_game(message(WIN), data);
 }

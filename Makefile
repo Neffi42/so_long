@@ -42,7 +42,7 @@ INCLUDE := $(strip $(INCLUDE))
 
 define SRC :=
 	main.c
-	error.c
+	message.c
 	end_game.c
 	free_maps.c
 	check_maps.c
@@ -68,7 +68,7 @@ endef
 SRC := $(strip $(SRC))
 
 define BONUS_SRC :=
-	error.c
+	message.c
 	end_game.c
 	free_maps.c
 	check_maps.c

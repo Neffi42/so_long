@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:40:53 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 18:41:14 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/18 10:27:00 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ int	main(int ac, const char **av)
 	init_data(&data, ac - 1, 1);
 	check_maps(ac, av, &data);
 	start_game(&data);
-	end_game(0, &data);
+	end_game(message(GAME_OVER), &data);
 }

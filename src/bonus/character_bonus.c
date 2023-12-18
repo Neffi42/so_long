@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:16:52 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/17 15:02:38 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:35:43 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@ static void	check_for_enemies(t_data *data)
 	size_t	i;
 	t_pos	*pos;
 
+	if (!data->maps[data->i].nbr_foes)
+		return ;
 	i = -1;
 	pos = &(data->maps[data->i].player);
-	while (++i < data->nbr_e)
-		if (pos->x == data->pos_e[i].x && pos->y == data->pos_e[i].y)
-			end_game(0, data);
+	while (++i < data->maps[data->i].nbr_foes)
+		if (pos->x == data->maps[data->i].pos_foes[i].x && \
+		pos->y == data->maps[data->i].pos_foes[i].y)
+			end_game(message(GAME_OVER), data);
 }
 
 void	move_character(t_data *data, t_pos pos, size_t x, size_t y)
