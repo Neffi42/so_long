@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/18 11:35:09 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:12:32 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,13 @@ static void	parse_map(t_data *data, int fd, const char *map_file, size_t i)
 	close(fd);
 	data->maps[i] = map;
 	data->maps[i].is_rectangle = check_is_rectangle(data, i);
-	data->maps[i].pos_foes = ft_calloc(data->maps[i].nbr_foes + 1, \
-	sizeof(t_pos));
-	if (!data->maps[i].pos_foes)
-		end_game(error(-1, ERROR_MALLOC, NULL), data);
+	if (data->bonus)
+	{
+		data->maps[i].pos_foes = ft_calloc(data->maps[i].nbr_foes + 1, \
+		sizeof(t_pos));
+		if (!data->maps[i].pos_foes)
+			end_game(error(-1, ERROR_MALLOC, NULL), data);
+	}
 }
 
 static int	check_walls(t_map map)
