@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/19 09:58:07 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:26:30 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@
 # define ERROR_IMG "is invalvid, please check the asset"
 # define WIN "▬▬▬ YOU WIN ! ▬▬▬"
 # define GAME_OVER "▬▬▬ GAME OVER ! ▬▬▬"
+# define CONTINUE "▬▬▬ Press any key to continue ▬▬▬"
 
 # define MAX_WIDTH 1920
 # define MAX_HEIGHT 1080
 # define TILE_LEN 40
+# define ANIM_TIME 175000000
 
 # define DIGIT_0 0
 # define DIGIT_1 1
@@ -99,7 +101,10 @@
 # define GOBLIN_L 55
 # define GOBLIN_DR 56
 # define GOBLIN_DL 57
-# define BONUS_IMGS 11
+# define LOST_D1 58
+# define LOST_D2 59
+# define LOST_D3 60
+# define BONUS_IMGS 14
 
 typedef struct s_vec
 {
@@ -185,12 +190,15 @@ void	put_image(t_data *data, size_t i, size_t x, size_t y);
 void	render_level(t_data *data);
 void	render_tile(t_data *data, size_t x, size_t y);
 void	render_character(t_data *data);
-void	move_character(t_data *data, t_pos pos, size_t x, size_t y);
+int		move_character(t_data *data, t_pos pos, size_t x, size_t y);
 void	render_counter(t_data *data);
 void	update_counter(t_data *data);
 void	render_foes(t_data *data);
 void	move_foes(t_data *data);
+void	check_for_foes(t_data *data);
+void	wait_anim(int mul);
 void	start_game(t_data *data);
+void	new_move(t_data *data, t_pos pos, size_t x, size_t y);
 void	next_map(t_data *data);
 
 #endif

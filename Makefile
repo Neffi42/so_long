@@ -81,7 +81,6 @@ define BONUS_SRC :=
 	init_img.c
 	init_imgs.c
 	init_data.c
-	event_keypress.c
 	event_destroy.c
 	put_image.c
 	translation.c
@@ -89,9 +88,12 @@ define BONUS_SRC :=
 	render_tile.c
 	render_counter.c
 	$(addprefix $(BONUS_DIR)/, $(addsuffix _bonus.c, main \
+	wait_anim \
 	foes \
 	render_foes \
+	check_for_foes \
 	game \
+	event_keypress \
 	character))
 endef
 BONUS_SRC := $(strip $(BONUS_SRC))

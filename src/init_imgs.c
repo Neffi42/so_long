@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:57:43 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/17 15:11:45 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:33:48 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ static void	init_bonus(t_data *data)
 	init_img(data, GOBLIN_B5, "./textures/GoblinB5.xpm");
 	init_img(data, GOBLIN_B6, "./textures/GoblinB6.xpm");
 	init_img(data, GOBLIN_B7, "./textures/GoblinB7.xpm");
+	init_img(data, LOST_D1, "./textures/TheLostDeath1.xpm");
+	init_img(data, LOST_D2, "./textures/TheLostDeath2.xpm");
+	init_img(data, LOST_D3, "./textures/TheLostDeath3.xpm");
 }
 
 void	init_imgs(t_data *data)

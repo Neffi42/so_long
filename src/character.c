@@ -6,13 +6,13 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:16:52 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/16 17:31:58 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:01:42 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_character(t_data *data, t_pos pos, size_t x, size_t y)
+int	move_character(t_data *data, t_pos pos, size_t x, size_t y)
 {
 	t_map	*map;
 
@@ -35,6 +35,7 @@ void	move_character(t_data *data, t_pos pos, size_t x, size_t y)
 				put_image(data, TRAP_O, map->exit.x, map->exit.y);
 		}
 	}
+	return (1);
 }
 
 void	render_character(t_data *data)

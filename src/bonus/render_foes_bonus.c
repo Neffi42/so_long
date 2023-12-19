@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 10:27:50 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/19 10:45:09 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:10:23 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,10 @@ void	render_foes(t_data *data)
 {
 	size_t		i;
 	int			x;
-	t_timespec	s;
 	t_map		*map;
 
 	i = 0;
 	x = -1;
-	s.tv_sec = 0;
-	s.tv_nsec = 175000000;
 	map = &(data->maps[data->i]);
 	init_pos_foe(map);
 	while (++x + GOBLIN_B1 <= GOBLIN_R)
@@ -48,6 +45,6 @@ void	render_foes(t_data *data)
 		while (++i < map->nbr_foes)
 			put_image(data, GOBLIN_B1 + x, map->foes[i].x, \
 			map->foes[i].y);
-		nanosleep(&s, NULL);
+		wait_anim(1);
 	}
 }
