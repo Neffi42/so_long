@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/18 13:56:24 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/19 09:35:37 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,6 @@ void	check_map(t_data *data, size_t i, const char *map_file)
 		end_game(error(-1, ERROR_MALLOC, map_file), data);
 	if (!check_walls(data->maps[i]))
 		end_game(error(-9, ERROR_INVALID_WALLS, map_file), data);
-	if (!flood_map(&(data->maps[i])))
+	if (!flood_map(&(data->maps[i]), data->bonus))
 		end_game(error(-10, ERROR_INVALID_PATH, map_file), data);
 }

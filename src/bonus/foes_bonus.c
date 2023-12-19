@@ -6,50 +6,69 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:44:05 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/18 15:14:22 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:18:00 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	init_pos_foe(t_map *map)
+static int	is_pos_free(char **map, size_t x, size_t y)
 {
-	size_t	i;
-	size_t	x;
-	size_t	y;
-
-	i = 0;
-	y = -1;
-	while (i < map->nbr_foes && ++y < map->height)
-	{
-		x = -1;
-		while (++x < map->width)
-			if (map->map[y][x] == 'X')
-				init_pos(&(map->foes[i++]), x, y);
-	}
+	if (map[y][x] == '0')
+		return (1);
+	return (0);
 }
 
-void	render_foes(t_data *data)
+static int	is_pos_player(char **map, t_pos *pos, t_pos foe, t_pos p)
 {
-	size_t		i;
-	int			x;
-	t_timespec	s;
-	t_map		*map;
+	int	x;
 
-	i = 0;
 	x = -1;
-	s.tv_sec = 0;
-	s.tv_nsec = 175000000;
-	map = &(data->maps[data->i]);
-	init_pos_foe(map);
-	while (++x + GOBLIN_B1 <= GOBLIN_R)
-	{
-		i = -1;
-		while (++i < map->nbr_foes)
-			put_image(data, GOBLIN_B1 + x, map->foes[i].x, \
-			map->foes[i].y);
-		nanosleep(&s, NULL);
-	}
+	if (p.y == foe.y && p.x == foe.x + 1 && init_pos(pos, foe.x + 1, foe.y))
+		return (0);
+	else if (is_pos_free(map, foe.x + 1, foe.y))
+		x--;
+	if (p.y == foe.y && p.x == foe.x - 1 && init_pos(pos, foe.x - 1, foe.y))
+		return (1);
+	else if (is_pos_free(map, foe.x - 1, foe.y))
+		x--;
+	if (p.y == foe.y + 1 && p.x == foe.x && init_pos(pos, foe.x, foe.y + 1))
+		return (2);
+	else if (is_pos_free(map, foe.x, foe.y + 1))
+		x--;
+	if (p.y == foe.y - 1 && p.x == foe.x && init_pos(pos, foe.x, foe.y - 1))
+		return (3);
+	else if (is_pos_free(map, foe.x, foe.y - 1))
+		x--;
+	return (x);
+}
+
+static int	init_from_dir(t_pos *pos, t_pos foe, int dir)
+{
+	if (!dir && init_pos(pos, foe.x + 1, foe.y))
+		pos->dir = dir;
+	if (dir == 1 && init_pos(pos, foe.x - 1, foe.y))
+		pos->dir = dir;
+	if (dir == 2 && init_pos(pos, foe.x, foe.y + 1))
+		pos->dir = dir;
+	if (dir == 3 && init_pos(pos, foe.x, foe.y - 1))
+		pos->dir = dir;
+	return (1);
+}
+
+static int	rand_pos(char **map, t_pos *pos, t_pos foe, t_pos p)
+{
+	int	r;
+
+	r = is_pos_player(map, pos, foe, p);
+	if (r == -1)
+		return (0);
+	if (r >= 0)
+		return (pos->dir = r, 1);
+	r = ft_range_rand(4);
+	while (init_from_dir(pos, foe, r) && !is_pos_free(map, pos->x, pos->y))
+		r = ft_range_rand(4);
+	return (1);
 }
 
 void	move_foes(t_data *data)
@@ -62,9 +81,11 @@ void	move_foes(t_data *data)
 	i = -1;
 	while (++i < map->nbr_foes)
 	{
-		pos = pathfinder(data, map->player, map->foes[i]);
-		render_tile(data, map->foes[i].x, map->foes[i].y);
-		put_image(data, GOBLIN_R + pos.dir, pos.x, pos.y);
-		map->foes[i] = pos;
+		if (rand_pos(map->map, &pos, map->foes[i], map->player))
+		{
+			render_tile(data, map->foes[i].x, map->foes[i].y);
+			put_image(data, GOBLIN_R + pos.dir, pos.x, pos.y);
+			map->foes[i] = pos;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/18 15:47:17 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/19 09:58:07 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,17 +117,11 @@ typedef struct s_pos
 
 typedef struct s_fmap
 {
+	int		bonus;
 	size_t	nbr_coins;
 	size_t	nbr_exit;
-	size_t	nbr_player;
 	char	**map;
 }	t_fmap;
-
-typedef struct s_dmap
-{
-	char	c;
-	int		cost;
-}	t_dmap;
 
 typedef struct s_img
 {
@@ -177,7 +171,7 @@ void	destroy_mlx(t_data *data);
 void	check_maps(size_t ac, const char **av, t_data *data);
 void	check_map(t_data *data, size_t i, const char *map_file);
 void	find_all_chars(t_data *data, t_map *map, size_t height, size_t len);
-int		flood_map(t_map *map);
+int		flood_map(t_map *map, int bonus);
 int		init_pos(t_pos *pos, size_t x, size_t y);
 void	init_map(t_map *map, const char *map_file);
 void	init_mlx(t_data *data);
@@ -195,9 +189,6 @@ void	move_character(t_data *data, t_pos pos, size_t x, size_t y);
 void	render_counter(t_data *data);
 void	update_counter(t_data *data);
 void	render_foes(t_data *data);
-t_dmap	**init_dmap(t_data *data, t_pos src, t_pos dest);
-void	*free_dmap(t_dmap **dmap);
-t_pos	pathfinder(t_data *data, t_pos src, t_pos dest);
 void	move_foes(t_data *data);
 void	start_game(t_data *data);
 void	next_map(t_data *data);
