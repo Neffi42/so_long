@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/19 14:26:30 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:48:35 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,34 +77,30 @@
 # define MOVE 33
 # define SEMI_COL 34
 # define LOST_ITEM 35
-# define LOST_JUMP1_1 36
-# define LOST_JUMP1_2 37
-# define LOST_JUMP2_1 38
-# define LOST_FD 39
-# define LOST_FL 40
-# define LOST_FU 41
-# define LOST_FR 42
-# define LOST_TD 43
-# define LOST_TL 44
-# define LOST_TU 45
-# define LOST_TR 46
-# define NBR_IMGS 47
+# define LOST_FD 36
+# define LOST_FL 37
+# define LOST_FU 38
+# define LOST_FR 39
+# define LOST_TD 40
+# define LOST_TL 41
+# define LOST_TU 42
+# define LOST_TR 43
+# define NBR_IMGS 44
 
-# define GOBLIN_B1 47
-# define GOBLIN_B2 48
-# define GOBLIN_B3 49
-# define GOBLIN_B4 50
-# define GOBLIN_B5 51
-# define GOBLIN_B6 52
-# define GOBLIN_B7 53
-# define GOBLIN_R 54
-# define GOBLIN_L 55
-# define GOBLIN_DR 56
-# define GOBLIN_DL 57
-# define LOST_D1 58
-# define LOST_D2 59
-# define LOST_D3 60
-# define BONUS_IMGS 14
+# define GOBLIN_B1 44
+# define GOBLIN_B2 45
+# define GOBLIN_B3 46
+# define GOBLIN_B4 47
+# define GOBLIN_B5 48
+# define GOBLIN_B6 49
+# define GOBLIN_B7 50
+# define GOBLIN_R 51
+# define GOBLIN_L 52
+# define GOBLIN_DR 53
+# define GOBLIN_DL 54
+# define LOST_JUMP 55
+# define LOST_D 56
+# define BONUS_IMGS 13
 
 typedef struct s_vec
 {

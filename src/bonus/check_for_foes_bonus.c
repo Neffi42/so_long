@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:57:34 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/19 14:27:25 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:41:45 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_for_foes(t_data *data)
 		pos->y == data->maps[data->i].foes[i].y)
 		{
 			data->bonus = 2;
-			put_image(data, LOST_D3, pos->x, pos->y);
+			put_image(data, LOST_D, pos->x, pos->y);
 			message(CONTINUE);
 		}
 	}

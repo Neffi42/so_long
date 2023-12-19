@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:03:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/19 14:30:35 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:50:55 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	exit_level(t_data *data)
 	data->bonus = 3;
 	render_tile(data, data->maps[data->i].player.x, \
 	data->maps[data->i].player.y);
-	put_image(data, LOST_JUMP2_1, data->maps[data->i].exit.x, \
+	put_image(data, LOST_JUMP, data->maps[data->i].exit.x, \
 	data->maps[data->i].exit.y);
 	message(CONTINUE);
 }
@@ -64,6 +64,7 @@ void	next_map(t_data *data)
 	if (++(data->i) < data->len)
 	{
 		destroy_mlx(data);
+		data->bonus = 1;
 		start_game(data);
 	}
 	end_game(message(WIN), data);
