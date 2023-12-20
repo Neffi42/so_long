@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/19 09:35:37 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:02:25 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,51 +23,41 @@ static int	check_suffix(const char *map_file)
 	return (1);
 }
 
-static int	check_is_rectangle(t_data *data, size_t i)
+static void	parse_lines(t_data *data, int fd, const char *map_file, t_map *map)
 {
-	size_t	j;
-	size_t	len;
-
-	j = 0;
-	data->maps[i].width = ft_strlen(data->maps[i].map[j]);
-	if (data->maps[i].width < 3)
-		return (0);
-	find_all_chars(data, &data->maps[i], j, data->maps[i].width);
-	while (data->maps[i].map[++j])
-	{
-		len = ft_strlen(data->maps[i].map[j]);
-		if (len != data->maps[i].width)
-			return (0);
-		find_all_chars(data, &data->maps[i], j, len);
-	}
-	return (1);
-}
-
-static void	parse_map(t_data *data, int fd, const char *map_file, size_t i)
-{
-	t_map	map;
 	char	*l1;
 	char	*l2;
+	size_t	len;
 
-	init_map(&map, map_file);
 	l1 = ft_get_next_line(fd);
+	map->width = ft_strlen(l1) - 1;
 	l2 = ft_get_next_line(fd);
-	while (l2 && ++map.height)
+	while (l2 && ++(map->height))
 	{
+		len = ft_strlen(l2);
+		if (l2[len -1] == '\n')
+			len--;
+		if (len != map->width && free_parse(l1, l2, fd))
+			end_game(error(-5, ERROR_INVALID_SHAPE, map_file), data);
 		l1 = ft_freejoin(l1, l2);
 		l2 = ft_get_next_line(fd);
 	}
-	map.map = ft_split(l1, '\n');
-	free(l1);
-	free(l2);
-	close(fd);
-	data->maps[i] = map;
-	data->maps[i].is_rectangle = check_is_rectangle(data, i);
+	map->map = ft_split(l1, '\n');
+	free_parse(l1, l2, fd);
+	if (!map->map)
+		end_game(error(-1, ERROR_MALLOC, map_file), data);
+	find_all_chars(data, map);
+	map->is_rectangle = 1;
+}
+
+static void	parse_map(t_data *data, t_map *map, const char *map_file, int fd)
+{
+	init_map(map, map_file);
+	parse_lines(data, fd, map_file, map);
 	if (data->bonus)
 	{
-		data->maps[i].foes = ft_calloc(data->maps[i].nbr_foes + 1, \
-		sizeof(t_pos));
-		if (!data->maps[i].foes)
+		map->foes = ft_calloc(map->nbr_foes + 1, sizeof(t_pos));
+		if (!map->foes)
 			end_game(error(-1, ERROR_MALLOC, NULL), data);
 	}
 }
@@ -83,8 +73,8 @@ static int	check_walls(t_map map)
 		j = -1;
 		if (!i || i == map.height - 1)
 		{
-			while (++j < map.width)
-				if (map.map[i][j] != '1')
+			while (j < map.width && map.map[i][j])
+				if (map.map[i][++j] != '1')
 					return (0);
 		}
 		else if (map.map[i][0] != '1' || map.map[i][map.width - 1] != '1')
@@ -100,7 +90,7 @@ void	check_map(t_data *data, size_t i, const char *map_file)
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0 || !check_suffix(map_file))
 		end_game(error(-3, ERROR_INVALID_SUFFIX, map_file), data);
-	parse_map(data, fd, map_file, i);
+	parse_map(data, &(data->maps[i]), map_file, fd);
 	if (!(data->maps[i].is_rectangle))
 		end_game(error(-5, ERROR_INVALID_SHAPE, map_file), data);
 	if ((data->maps[i].width + 2) * TILE_LEN > MAX_WIDTH || \

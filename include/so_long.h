@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/19 14:48:35 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:57:41 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,10 +168,11 @@ int		message(char *message);
 int		error(int status, char *message, const char *file);
 void	end_game(int status, t_data *data);
 void	free_maps(t_data *data);
+int		free_parse(char *l1, char *l2, int fd);
 void	destroy_mlx(t_data *data);
 void	check_maps(size_t ac, const char **av, t_data *data);
 void	check_map(t_data *data, size_t i, const char *map_file);
-void	find_all_chars(t_data *data, t_map *map, size_t height, size_t len);
+void	find_all_chars(t_data *data, t_map *map);
 int		flood_map(t_map *map, int bonus);
 int		init_pos(t_pos *pos, size_t x, size_t y);
 void	init_map(t_map *map, const char *map_file);

@@ -53,6 +53,7 @@ define SRC :=
 	find_all_chars.c
 	flood_map.c
 	free_maps.c
+	free_parse.c
 	game.c
 	init_data.c
 	init_img.c
@@ -81,6 +82,7 @@ define BONUS_SRC :=
 	find_all_chars.c
 	flood_map.c
 	free_maps.c
+	free_parse.c
 	init_data.c
 	init_img.c
 	init_imgs.c

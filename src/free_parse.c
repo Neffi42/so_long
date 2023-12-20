@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   free_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 12:01:44 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/20 11:52:46 by abasdere         ###   ########.fr       */
+/*   Created: 2023/12/20 11:51:43 by abasdere          #+#    #+#             */
+/*   Updated: 2023/12/20 11:52:01 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_map(t_map *map, const char *map_file)
+int	free_parse(char *l1, char *l2, int fd)
 {
-	map->nbr_coins = 0;
-	map->nbr_exit = 0;
-	init_pos(&(map->exit), -1, -1);
-	map->nbr_player = 0;
-	init_pos(&(map->player), -1, -1);
-	map->height = 1;
-	map->width = 0;
-	map->is_rectangle = 0;
-	map->map = NULL;
-	map->map_file = map_file;
-	map->nbr_foes = 0;
-	map->foes = NULL;
+	free(l1);
+	free(l2);
+	close(fd);
+	return (1);
 }

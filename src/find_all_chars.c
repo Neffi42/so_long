@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:39:37 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/19 10:19:13 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:57:54 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,22 @@ static size_t	find_el(t_data *data, t_map *map, size_t height, char el)
 	return (i);
 }
 
-void	find_all_chars(t_data *data, t_map *map, size_t height, size_t len)
+void	find_all_chars(t_data *data, t_map *map)
 {
 	size_t	i;
+	size_t	h;
 
-	i = find_el(data, map, height, '0');
-	i += find_el(data, map, height, '1');
-	i += find_el(data, map, height, 'E');
-	i += find_el(data, map, height, 'C');
-	i += find_el(data, map, height, 'P');
-	if (data->bonus)
-		i += find_el(data, map, height, 'X');
-	if (i != len)
-		end_game(error(-4, ERROR_WRONG_CHAR, map->map_file), data);
+	h = -1;
+	while (++h < map->height)
+	{
+		i = find_el(data, map, h, '0');
+		i += find_el(data, map, h, '1');
+		i += find_el(data, map, h, 'E');
+		i += find_el(data, map, h, 'C');
+		i += find_el(data, map, h, 'P');
+		if (data->bonus)
+			i += find_el(data, map, h, 'X');
+		if (i != map->width)
+			end_game(error(-4, ERROR_WRONG_CHAR, map->map_file), data);
+	}
 }
