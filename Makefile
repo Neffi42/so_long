@@ -19,7 +19,7 @@ INC_DIR = include
 BONUS_DIR = bonus
 OBJ_DIR = obj
 LIBFT_DIR = lib/libft
-LIBMLX_DIR = lib/minilibx
+LIBMLX_DIR = lib/minilibx-linux
 
 # Files
 LIBFT = $(LIBFT_DIR)/libft.a
