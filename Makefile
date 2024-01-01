@@ -13,13 +13,13 @@ CYAN    = \033[0;36m
 BWHITE    = \033[1;37m
 
 # Directories
-LIB_DIR = lib
-SRC_DIR = src
-INC_DIR = include
+LIBS_DIR = libs
+SRCS_DIR = srcs
+INCS_DIR = includes
 BONUS_DIR = bonus
-OBJ_DIR = obj
-LIBFT_DIR = lib/libft
-LIBMLX_DIR = lib/minilibx-linux
+OBJS_DIR = objs
+LIBFT_DIR = $(LIBS_DIR)/libft
+LIBMLX_DIR = $(LIBS_DIR)/minilibx-linux
 
 # Files
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -33,12 +33,12 @@ define LIB :=
 endef
 LIB := $(strip $(LIB))
 
-define INCLUDE :=
-	$(INC_DIR)
-	$(LIBFT_DIR)/include
+define INCLUDES :=
+	$(INCS_DIR)
+	$(LIBFT_DIR)/includes
 	$(LIBMLX_DIR)
 endef
-INCLUDE := $(strip $(INCLUDE))
+INCLUDES := $(strip $(INCLUDES))
 
 define SRC :=
 	character.c
@@ -107,14 +107,14 @@ define BONUS_SRC :=
 endef
 BONUS_SRC := $(strip $(BONUS_SRC))
 
-OBJ := $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC))
-BONUS_OBJ := $(patsubst %.c,$(OBJ_DIR)/%.o,$(BONUS_SRC))
+OBJ := $(patsubst %.c,$(OBJS_DIR)/%.o,$(SRC))
+BONUS_OBJ := $(patsubst %.c,$(OBJS_DIR)/%.o,$(BONUS_SRC))
 
 # Utils
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
-INCLUDE_FLAGS := $(addprefix -I , $(INCLUDE))
+INCLUDES_FLAGS := $(addprefix -I , $(INCLUDES))
 LIB_FLAGS = --no-print-directory --silent
 
 # Rules
@@ -125,15 +125,15 @@ $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
 	@echo "$(GREEN)* Assembling $(BWHITE)$@$(DEFAULT)"
 	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@echo "$(CYAN)- Compiling$(DEFAULT) $<"
-	@mkdir -p $(OBJ_DIR)/$(BONUS_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $< -o $@
+	@mkdir -p $(OBJS_DIR)/$(BONUS_DIR)
+	@$(CC) $(CFLAGS) $(INCLUDES_FLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
-	@echo "$(RED)! Removing$(DEFAULT) $(OBJ_DIR) files"
-	@$(RM) $(OBJ_DIR)
+	@echo "$(RED)! Removing$(DEFAULT) $(OBJS_DIR) files"
+	@$(RM) $(OBJS_DIR)
 
 .PHONY: fclean
 fclean: clean
@@ -185,4 +185,4 @@ norm:
 	@echo "$(YELLOW)$(WD) ./$(LIBFT_DIR)$(DEFAULT)"
 	@make -C $(LIBFT_DIR) norm $(LIB_FLAGS)
 	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
-	@norminette $(SRC_DIR) $(INC_DIR) | awk '/'Error'/ {print; found=1} END {if (!found) print "$(PURPLE)Norm OK$(DEFAULT)"}'
+	@norminette $(SRCS_DIR) $(INCS_DIR) | awk '/'Error'/ {print; found=1} END {if (!found) print "$(PURPLE)Norm OK$(DEFAULT)"}'

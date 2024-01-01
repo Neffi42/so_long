@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:07:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/20 12:02:25 by abasdere         ###   ########.fr       */
+/*   Updated: 2024/01/01 16:17:22 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	parse_lines(t_data *data, int fd, const char *map_file, t_map *map)
 			len--;
 		if (len != map->width && free_parse(l1, l2, fd))
 			end_game(error(-5, ERROR_INVALID_SHAPE, map_file), data);
-		l1 = ft_freejoin(l1, l2);
+		l1 = ft_freejoin(l1, l2, 2);
 		l2 = ft_get_next_line(fd);
 	}
 	map->map = ft_split(l1, '\n');
