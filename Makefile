@@ -1,5 +1,6 @@
 # Program name
 NAME = so_long
+BONUS = so_long_bonus
 
 # Colors
 DEFAULT    = \033[0m
@@ -110,6 +111,8 @@ clean:
 fclean: clean
 	@echo "$(RED)! Removing$(DEFAULT) $(NAME)"
 	@$(RM) $(NAME)
+	@echo "$(RED)! Removing$(DEFAULT) $(BONUS)"
+	@$(RM) $(BONUS)
 
 .PHONY: re
 re: fclean all
@@ -147,9 +150,11 @@ fcleanlib:
 relib: fcleanlib $(LIBFT) $(LIBMLX)
 
 .PHONY: bonus
-bonus: fclean $(LIBFT) $(LIBMLX) $(BONUS_OBJ)
+bonus: $(BONUS)
+
+$(BONUS): $(LIBFT) $(LIBMLX) $(BONUS_OBJ)
 	@echo "$(GREEN)* Assembling $(BWHITE)$@$(DEFAULT)"
-	@$(CC) $(CFLAGS) $(BONUS_OBJ) $(LIB) -o $(NAME)
+	@$(CC) $(CFLAGS) $(BONUS_OBJ) $(LIB) -o $(BONUS)
 
 .PHONY: norm
 norm:
