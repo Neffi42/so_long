@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:31:15 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/20 11:57:41 by abasdere         ###   ########.fr       */
+/*   Updated: 2024/01/03 11:30:36 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define ERROR_MAP_TOO_BIG "is invalid, the map is to big"
 # define ERROR_MALLOC "Malloc failed"
 # define ERROR_IMG "is invalvid, please check the asset"
+# define ERROR_MOVES "You have used all your stamina..."
 # define WIN "▬▬▬ YOU WIN ! ▬▬▬"
 # define GAME_OVER "▬▬▬ GAME OVER ! ▬▬▬"
 # define CONTINUE "▬▬▬ Press any key to continue ▬▬▬"

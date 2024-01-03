@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:24:08 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/20 08:36:41 by abasdere         ###   ########.fr       */
+/*   Updated: 2024/01/03 11:35:57 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	message(char *message)
 {
-	ft_dprintf(1, "%s\n", message);
+	ft_printf("%s\n", message);
 	return (0);
 }
