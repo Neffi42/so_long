@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_foes_bonus.c                                :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 10:27:50 by abasdere          #+#    #+#             */
-/*   Updated: 2024/01/03 11:43:14 by abasdere         ###   ########.fr       */
+/*   Created: 2023/12/19 13:59:01 by abasdere          #+#    #+#             */
+/*   Updated: 2024/01/03 12:56:52 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,35 @@ void	render_foes(t_data *data)
 			put_image(data, GOBLIN_B1 + x, map->foes[i].x, \
 			map->foes[i].y);
 		wait_anim(1);
+	}
+}
+
+void	wait_anim(int mul)
+{
+	t_timespec	s;
+
+	s.tv_sec = 0;
+	s.tv_nsec = ANIM_TIME * mul;
+	nanosleep(&s, NULL);
+}
+
+void	check_for_foes(t_data *data)
+{
+	size_t	i;
+	t_pos	*pos;
+
+	if (!data->maps[data->i].nbr_foes)
+		return ;
+	i = -1;
+	pos = &(data->maps[data->i].player);
+	while (++i < data->maps[data->i].nbr_foes)
+	{
+		if (pos->x == data->maps[data->i].foes[i].x && \
+		pos->y == data->maps[data->i].foes[i].y)
+		{
+			data->bonus = 2;
+			put_image(data, LOST_D, pos->x, pos->y);
+			message(CONTINUE);
+		}
 	}
 }

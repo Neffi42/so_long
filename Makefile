@@ -43,67 +43,38 @@ INCLUDES := $(strip $(INCLUDES))
 define SRC :=
 	character.c
 	check_map.c
-	check_maps.c
 	counter.c
-	destroy_mlx.c
 	end_game.c
-	error.c
-	event_destroy.c
 	event_keypress.c
 	find_all_chars.c
 	flood_map.c
-	free_maps.c
-	free_parse.c
-	game.c
-	init_data.c
-	init_img.c
 	init_imgs.c
-	init_map.c
-	init_mlx.c
-	init_pos.c
+	inits.c
 	main.c
-	message.c
-	next_map.c
-	put_image.c
+	mlx.c
 	render_level.c
-	render_tile.c
-	translation.c
+	renders.c
+	utils.c
 endef
 SRC := $(strip $(SRC))
 
 define BONUS_SRC :=
 	check_map.c
-	check_maps.c
 	counter.c
-	destroy_mlx.c
 	end_game.c
-	error.c
-	event_destroy.c
 	find_all_chars.c
 	flood_map.c
-	free_maps.c
-	free_parse.c
-	init_data.c
-	init_img.c
 	init_imgs.c
-	init_map.c
-	init_mlx.c
-	init_pos.c
-	message.c
-	next_map.c
-	put_image.c
+	inits.c
+	mlx.c
 	render_level.c
-	render_tile.c
-	translation.c
+	renders.c
+	utils.c
 	$(addprefix $(BONUS_DIR)/, $(addsuffix _bonus.c, character \
-	check_for_foes \
 	event_keypress \
 	foes \
-	game \
 	main \
-	new_move \
-	render_foes \
-	wait_anim ))
+	utils ))
 endef
 BONUS_SRC := $(strip $(BONUS_SRC))
 
