@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:04:49 by abasdere          #+#    #+#             */
-/*   Updated: 2024/01/03 12:52:47 by abasdere         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:02:50 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,27 @@ int	free_parse(char *l1, char *l2, int fd)
 	free(l2);
 	close(fd);
 	return (1);
+}
+
+void	destroy_mlx(t_data *data)
+{
+	size_t	i;
+	size_t	limit;
+
+	i = -1;
+	limit = NBR_IMGS;
+	if (data->bonus)
+		limit += BONUS_IMGS;
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	while (data->imgs && ++i < limit)
+		if (data->imgs[i].img)
+			mlx_destroy_image(data->mlx, data->imgs[i].img);
+	if (data->imgs)
+		free(data->imgs);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
 }

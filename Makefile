@@ -49,9 +49,9 @@ define SRC :=
 	find_all_chars.c
 	flood_map.c
 	init_imgs.c
+	init_mlx.c
 	inits.c
 	main.c
-	mlx.c
 	render_level.c
 	renders.c
 	utils.c
@@ -65,8 +65,8 @@ define BONUS_SRC :=
 	find_all_chars.c
 	flood_map.c
 	init_imgs.c
+	init_mlx.c
 	inits.c
-	mlx.c
 	render_level.c
 	renders.c
 	utils.c

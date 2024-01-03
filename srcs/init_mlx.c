@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:28:54 by abasdere          #+#    #+#             */
-/*   Updated: 2024/01/03 12:59:03 by abasdere         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:57:10 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,4 @@ void	init_mlx(t_data *data)
 	if (!(data->mlx))
 		end_game(error(-1, ERROR_MALLOC, NULL), data);
 	init_win(data);
-}
-
-void	destroy_mlx(t_data *data)
-{
-	size_t	i;
-
-	i = 0;
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
-	if (data->imgs && data->bonus)
-		while (i < NBR_IMGS + BONUS_IMGS && data->imgs[i].img)
-			mlx_destroy_image(data->mlx, data->imgs[i++].img);
-	else if (data->imgs && !data->bonus)
-		while (i < NBR_IMGS && data->imgs[i].img)
-			mlx_destroy_image(data->mlx, data->imgs[i++].img);
-	if (data->imgs)
-		free(data->imgs);
-	if (data->mlx)
-	{
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-	}
 }
