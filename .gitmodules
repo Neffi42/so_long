@@ -1,3 +1,0 @@
-[submodule "libs/libft"]
-	path = libs/libft
-	url = git@github.com:Neffi42/libft.git
